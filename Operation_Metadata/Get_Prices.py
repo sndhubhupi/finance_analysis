@@ -10,6 +10,7 @@ import datetime
 def get_stock_price_dt_range(stock_ticker,start_date,end_date):
     # DataReader method name is case sensitive
     try :
+        print 'Start Fetching data for stock data for : ' + stock_ticker
         df = web.DataReader(stock_ticker, 'yahoo', start_date, end_date)
     #df = web.DataReader('TCS', 'google', start, end)
     #df = web.DataReader('TCS', 'morningstar', start, end)
@@ -25,6 +26,7 @@ def get_stock_price_dt_range(stock_ticker,start_date,end_date):
         if os.path.exists(file_path):
             os.remove(file_path)
         df.to_csv(file_path)
+        print 'Data for ' + stock_ticker + ' loaded into file :' + file_path
         return file_path
     except :
         print "Chill bro, some issue with data fetching from yahoo " + stock_ticker
