@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96ebf537-7b35-4005-a02b-4761da7d131a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/temp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,17 +16,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/database_table.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
+            <state relative-caret-position="368">
               <caret line="37" column="99" selection-start-line="37" selection-start-column="99" selection-end-line="37" selection-end-column="99" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="210">
               <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -36,17 +37,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="108" selection-start-line="108" selection-end-line="108" />
+            <state relative-caret-position="188">
+              <caret line="28" column="20" selection-end-line="102" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="78" selection-start-line="78" selection-end-line="78" />
+            <state relative-caret-position="272">
+              <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -57,7 +58,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
+            <state relative-caret-position="580">
               <caret line="51" selection-start-line="51" selection-end-line="51" />
             </state>
           </provider>
@@ -66,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="270">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -97,11 +98,11 @@
         <option value="$PROJECT_DIR$/Operation_Metadata/database_table.sql" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Get_Prices.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/From_Oracle.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/temp.txt" />
         <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" />
         <option value="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" />
       </list>
     </option>
   </component>
@@ -119,7 +120,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,6 +142,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,7 +303,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959645" weight="0.318797" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959645" visible="true" weight="0.318797" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -371,48 +372,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/temp.txt" />
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/ADANIPORTS.NS_20170327_20190328.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/ZEEL.NS_20170327_20190328.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="497" column="10" selection-start-line="497" selection-end-line="498" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/YESBANK.NS_20170327_20190328.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7162" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/database_table.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
+        <state relative-caret-position="368">
           <caret line="37" column="99" selection-start-line="37" selection-start-column="99" selection-end-line="37" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/ZEEL.NS_20190327_20190328.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/temp.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="31" selection-end-line="49" selection-end-column="26" />
+        <state relative-caret-position="188">
+          <caret line="28" column="20" selection-end-line="102" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
@@ -421,8 +428,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="210">
           <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

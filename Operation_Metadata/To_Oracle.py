@@ -54,6 +54,7 @@ def load_stock_prize_to_db(stock_dt_range):
                                 (stock_ticker, lines['Date'], lines['High'], lines['Low'],lines['Open'], lines['Close'], lines['Volume'], lines['Adj Close']))
                     except :
                          break
+            os.remove(file_generated)
     cur.close()
     conn_str.commit()
     #conn_str.close()

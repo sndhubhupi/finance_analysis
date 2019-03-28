@@ -19,12 +19,8 @@ as
     is
         cursor stock_list is
             select stock_ticker,
-                case
-                    when nvl(price_earliest_dt,sysdate-731) > (sysdate -729) then trunc(nvl(price_earliest_dt,sysdate-731))
-                    when nvl(price_earliest_dt,sysdate-731) < (sysdate -729) then trunc(sysdate - 731)
-                else trunc (nvl(price_earliest_dt,sysdate-731))
-                end as price_earliest_dt,
-                trunc(nvl(price_latest_dt,sysdate -1)) as price_latest_dt
+                   trunc(nvl(price_latest_dt,sysdate-731)) as price_earliest_dt,
+                   trunc(nvl(price_latest_dt,sysdate -1)) as price_latest_dt
         from stock_info_list;
     begin
         for rec in stock_list
@@ -33,6 +29,7 @@ as
                 then
                     null;
                 else
+                    rec.price_earliest_dt := trunc(rec.price_earliest_dt) +1;
                     rec.price_latest_dt := trunc(sysdate);
                     pipe row (rec);
                 end if;
@@ -99,10 +96,7 @@ as
 
 
     end update_earliest_latest_dt;
-        
+
 
 end finance_analysis;
 /
-
-
-
