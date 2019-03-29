@@ -4,16 +4,29 @@ as
         stock_ticker        varchar2(20),
         price_earliest_dt   date,
         price_latest_dt     date);
+    type t_findings is record ( 
+        stock_ticker        varchar2(20),
+        business_date       date,
+        finding_type        varchar2(50),
+        full_discription    varchar2(1000));        
     type tab_stock_dt_range is table of t_stock_dt_range;
+    type tab_findings is table of t_findings;
     function out_stock_list_dt_range return tab_stock_dt_range pipelined;
+    function out_candle_stick_pattern return  tab_findings pipelined;
     procedure calc_moving_average;
     procedure update_earliest_latest_dt;
+    procedure find_candle_stick_pattern;
+    procedure twizzer_bottom (  in_stock_ticker    stock_info_list.stock_ticker%type);
 
 end finance_analysis;
 /
 
 create or replace package body finance_analysis
 as
+   const_smoothing_factor   number := 0.1;
+   v_row_count              number;
+    
+    
     function out_stock_list_dt_range
         return tab_stock_dt_range pipelined
     is
@@ -37,6 +50,24 @@ as
             return;
     end out_stock_list_dt_range;
 
+    function out_candle_stick_pattern
+        return tab_findings pipelined
+    is
+        cursor finding_list is
+            select stock_ticker,
+                   business_date,
+                   finding_type,
+                   full_discription
+        from findings;
+    begin
+        for rec in finding_list
+            loop
+                    pipe row (rec);
+            end loop;
+            return;
+    end out_candle_stick_pattern;
+    
+    
     procedure calc_moving_average
     as
     begin
@@ -96,7 +127,35 @@ as
 
 
     end update_earliest_latest_dt;
+    
+    procedure find_candle_stick_pattern
+    as
+    begin
+        for stock in (select distinct stock_ticker from stock_info_list)
+        loop    
+            null;
+        end loop;
+    end find_candle_stick_pattern;
 
-
+    procedure twizzer_bottom (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        cursor analysis_data is
+            select * from (select * from stock_price_data where stock_ticker = in_stock_ticker order by business_date desc) where rownum < 21;
+        type t_stock_price_data is table of stock_price_data%rowtype index by binary_integer;
+        tab_stock_price_data t_stock_price_data;
+        v_max_date date;
+    begin
+        open analysis_data;
+        fetch analysis_data bulk collect into tab_stock_price_data;
+        close analysis_data;
+        -- check valid 20 days data is there to do calculation 
+        if tab_stock_price_data.count < 20
+            then 
+                return;
+        end if;
+        -- check condition 4 bullish candle
+          select max(business_date) into v_max_date from table(tab_stock_price_data);
+    
+    end twizzer_bottom;
 end finance_analysis;
 /
