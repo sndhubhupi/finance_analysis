@@ -30,6 +30,16 @@ PARTITION BY LIST (stock_ticker) AUTOMATIC
   PARTITION part_maruti VALUES ('MARUTI.NS')
 );
 
+
+create table findings 
+(   stock_ticker        varchar2(20),
+    business_date       date,
+    finding_type        varchar2(50),
+    full_discription    varchar2(1000),
+    primary key (stock_ticker,business_date,finding_type)
+);
+
+
 create table stg_stock_price_data as select * from stock_price_data;
 select * from stg_stock_price_data;
 
