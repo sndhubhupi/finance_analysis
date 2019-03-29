@@ -11,8 +11,12 @@ as
         full_discription    varchar2(1000));        
     type tab_stock_dt_range is table of t_stock_dt_range;
     type tab_findings is table of t_findings;
+    
     function out_stock_list_dt_range return tab_stock_dt_range pipelined;
     function out_candle_stick_pattern return  tab_findings pipelined;
+    
+    procedure truncate_table (in_table_name     varchar2);
+    procedure load_price_data_from_stg;
     procedure calc_moving_average;
     procedure update_earliest_latest_dt;
     procedure find_candle_stick_pattern;
@@ -67,6 +71,24 @@ as
             return;
     end out_candle_stick_pattern;
     
+    
+    procedure(in_table_name     varchar2)
+    as
+        v_sql   varchar2(100) := 'truncate table ';
+    begin
+        v_sql := v_sql || in_table_name;
+        execute immediate v_sql;
+    end;
+    
+    procedure load_price_data_from_stg
+    as
+    begin
+        insert into stock_price_data
+            select * from stg_stock_price_data
+                where not exits (select 1 from stg_stock_price_data where stg_stock_price_data.stock_ticker = stock_price_data.stock_ticker
+                                                                      and stg_stock_price_data.business_date = stock_price_data.business_date);
+        commit;                                                                        
+    end;
     
     procedure calc_moving_average
     as
