@@ -7,7 +7,14 @@ create table stg_stock_info_list
     sensex              number,
     other               number);
 
-create table stock_info_list as select * from stg_stock_info_list;
+create table stock_info_list
+(   stock_ticker        varchar2(20),
+    stock_name          varchar2(100),
+    price_earliest_dt   date,
+    price_latest_dt     date,
+    nifty50             number,
+    sensex              number,
+    other               number);
 alter table stock_info_list add CONSTRAINT stock_info_list_pk PRIMARY KEY (stock_ticker) enable;
 
 create table stock_price_data
