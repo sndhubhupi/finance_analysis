@@ -16,3 +16,14 @@ def fetch_stock_list_dt_range():
     #conn_str.close()
     print '-- Fetching completed --'
     return stock_dt_range
+
+def fetch_candlestick_findings():
+    print '-- fetch_candlestick_findings --'
+    from_oracle_cursr = conn_str.cursor();
+    from_oracle_cursr.execute("select * from table(finance_analysis.out_candle_stick_pattern())");
+    findings = from_oracle_cursr.fetchall();
+    from_oracle_cursr.close()
+    #conn_str.commit()
+    #conn_str.close()
+    print '-- fetch_candlestick_findings completed --'
+    return findings
