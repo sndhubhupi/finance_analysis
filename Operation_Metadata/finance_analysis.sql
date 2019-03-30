@@ -23,6 +23,7 @@ as
     procedure find_candle_stick_pattern;
     procedure twizzer_bottom (  in_stock_ticker    stock_info_list.stock_ticker%type);
     procedure twizzer_top    (  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure bullish_englufing(  in_stock_ticker    stock_info_list.stock_ticker%type);
 
 end finance_analysis;
 /
@@ -178,8 +179,9 @@ as
         truncate_table('findings');
         for stock in (select distinct stock_ticker from stock_info_list)
         loop
-            twizzer_bottom  (stock.stock_ticker);
-            twizzer_top     (stock.stock_ticker);
+            twizzer_bottom      (stock.stock_ticker);
+            twizzer_top         (stock.stock_ticker);
+            bullish_englufing   (stock.stock_ticker);
         end loop;
     end find_candle_stick_pattern;
 
@@ -232,7 +234,7 @@ as
          end if;
 
 
-          -- check 4 :-
+          -- check 4 Down trend confirmed :-
 
           select price_open,price_close into v_price_open, v_price_close
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
@@ -277,7 +279,7 @@ as
 
 
 
-          -- check 2 :- previous day candle must be bearish
+          -- check 2 :- previous day candle must be bullish
 
           select max(business_date) into v_yesterday_date from stg_stock_price_data
             where business_date != v_max_date;
@@ -314,6 +316,77 @@ as
             commit;
           end if;
     end twizzer_top;
+
+
+    procedure bullish_englufing    (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        v_finding_type      varchar2(50)    := 'BULLISH_ENGULFING';
+        v_finding_counter   number default 0;
+        check_equality      boolean;
+    begin
+          truncate_table('stg_stock_price_data');
+          v_full_discription := '';
+
+          -- load only 15 days data for particular stock in stg table
+          insert into stg_stock_price_data
+            select * from (select * from stock_price_data where stock_ticker = in_stock_ticker order by business_date desc) where rownum < 16;
+          select max(business_date) into v_max_date from stg_stock_price_data;
+
+          -- check 1 :- last candle must be Bullish
+
+          select price_open, price_close into v_price_open, v_price_close
+            from stg_stock_price_data where business_date = v_max_date;
+
+          if v_price_close > v_price_open then
+            v_finding_counter := v_finding_counter + 1;
+            v_green_percentage := ROUND(((v_price_close - v_price_open)/v_price_open)*100,3);
+            v_full_discription := v_full_discription || ' 1. Bullish candle formed with percentage ' || v_green_percentage;
+          end if;
+
+          -- check 2 :- previous day candle must be bearish
+
+          select max(business_date) into v_yesterday_date from stg_stock_price_data
+            where business_date != v_max_date;
+          select price_open, price_close into v_price_open_2, v_price_close_2
+            from stg_stock_price_data where business_date = v_yesterday_date;
+
+          if v_price_close_2 < v_price_open_2 then
+            v_finding_counter := v_finding_counter + 1;
+            v_red_percentage := ROUND(((v_price_open_2 - v_price_close_2)/v_price_open_2)*100,3);
+            v_full_discription := v_full_discription || ' 2. Bearish candle formed with percentage ' || v_red_percentage;
+          end if;
+
+
+         -- check 3 :- open of day 1 must be less than close of day 2 , Gap down
+         if v_price_close_2 > v_price_open then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 3. Gap Down  , ' || 'Open Price : ' || round(v_price_open,3) || ' Previous Day Close Price : ' ||  round(v_price_close_2,3);
+         end if;
+
+         -- check 4 :- Gap Down rejected and close above previous day open
+         if v_price_close > v_price_open_2 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 4. Gap Down  Rejected , ' || 'Close Price : ' || round(v_price_close,3) || ' Previous Day Open Price : ' ||  round(v_price_open_2,3);
+         end if;
+
+
+          -- check 4 checking for uptrend in twizzer top:-
+
+          -- check 5 Down trend confirmed :-
+
+          select price_open,price_close into v_price_open, v_price_close
+                 from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
+          if v_price_close_2 < v_price_open then
+            --v_finding_counter := v_finding_counter + 1;
+            v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
+            v_full_discription := v_full_discription || ' 5. Downtrend confirmed with percentage ' || v_red_percentage;
+          end if;
+
+          if v_finding_counter = 4 then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
+            commit;
+          end if;
+    end bullish_englufing;
 
 
 end finance_analysis;
