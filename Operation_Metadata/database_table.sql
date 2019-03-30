@@ -53,3 +53,12 @@ select * from stg_stock_price_data;
 get_stock_price_dt_range('MARUTI.BO',datetime.datetime(2009, 9, 1),datetime.datetime(2019, 03, 16))
 get_stock_price_dt_range('TCS.NS',datetime.datetime(2018, 9, 1),datetime.datetime(2019, 03, 16))
 # get_stock_price_dt_range('INFY.NS',datetime.datetime(2018, 9, 1),datetime.datetime(2019, 03, 16))
+
+
+
+begin
+    finance_analysis.find_candle_stick_pattern;
+end;
+/
+
+select * from findings;
