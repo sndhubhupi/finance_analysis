@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96ebf537-7b35-4005-a02b-4761da7d131a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/database_table.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="283">
-              <caret line="58" selection-start-line="58" selection-end-line="63" selection-end-column="23" />
+              <caret line="58" selection-start-line="58" selection-end-line="64" />
             </state>
           </provider>
         </entry>
@@ -25,8 +25,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+            <state relative-caret-position="135">
+              <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="1050" selection-start-line="1050" selection-end-line="1050" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-342">
+              <caret line="45" column="13" lean-forward="true" selection-end-line="93" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -35,31 +56,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="973" selection-start-line="973" selection-end-line="973" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="14" column="84" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="10" selection-start-line="25" selection-end-line="25" selection-end-column="10" />
+            <state relative-caret-position="148">
+              <caret line="93" column="53" lean-forward="true" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -67,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="22" column="67" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
+            <state relative-caret-position="420">
+              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -98,10 +98,10 @@
         <option value="$PROJECT_DIR$/Operation_Metadata/Get_Prices.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/temp.txt" />
         <option value="$PROJECT_DIR$/Operation_Metadata/From_Oracle.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/database_table.sql" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" />
       </list>
     </option>
@@ -302,14 +302,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959645" weight="0.29041097" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4988086" visible="true" weight="0.29041097" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32932332" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5004035" side_tool="true" visible="true" weight="0.32739726" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50119144" side_tool="true" weight="0.29041097" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -376,10 +376,17 @@
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/ZEEL.NS_20170327_20190328.csv" />
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/YESBANK.NS_20170327_20190328.csv" />
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/ZEEL.NS_20190327_20190328.csv" />
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/ABCAPITAL.NS_20190329_20190331.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="84" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
@@ -388,18 +395,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="67" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
+        <state relative-caret-position="420">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        <state relative-caret-position="-342">
+          <caret line="45" column="13" lean-forward="true" selection-end-line="93" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
@@ -409,21 +416,21 @@
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/database_table.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
-          <caret line="58" selection-start-line="58" selection-end-line="63" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="10" selection-start-line="25" selection-end-line="25" selection-end-column="10" />
+          <caret line="58" selection-start-line="58" selection-end-line="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="973" selection-start-line="973" selection-end-line="973" />
+        <state relative-caret-position="433">
+          <caret line="1050" selection-start-line="1050" selection-end-line="1050" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="93" column="53" lean-forward="true" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
         </state>
       </provider>
     </entry>

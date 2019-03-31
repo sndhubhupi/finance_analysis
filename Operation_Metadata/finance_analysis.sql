@@ -23,19 +23,23 @@ as
 
     procedure find_candle_stick_pattern;
 
-    procedure twizzer_bottom (  in_stock_ticker    stock_info_list.stock_ticker%type);
-    procedure twizzer_top    (  in_stock_ticker    stock_info_list.stock_ticker%type);
-
+    --Bullish Reversal Patterns
     procedure bullish_englufing(  in_stock_ticker    stock_info_list.stock_ticker%type);
-    procedure bearish_englufing(  in_stock_ticker    stock_info_list.stock_ticker%type);
     procedure bullish_harami   (  in_stock_ticker    stock_info_list.stock_ticker%type);
-    procedure bearish_harami   (  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure morning_star     (  in_stock_ticker    stock_info_list.stock_ticker%type);
 
+    --Bearish Reversal Patterns
+    procedure bearish_englufing(  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure bearish_harami   (  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure evening_star     (  in_stock_ticker    stock_info_list.stock_ticker%type);
+
+    --Single-Candle Patterns
 	procedure dragonfly_doji	 (in_stock_ticker    stock_info_list.stock_ticker%type);
     procedure gravestone_doji	 (in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure shooting_star    (  in_stock_ticker    stock_info_list.stock_ticker%type);
 
-    procedure evening_star     (  in_stock_ticker    stock_info_list.stock_ticker%type);
-    procedure morning_star     (  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure twizzer_bottom (  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure twizzer_top    (  in_stock_ticker    stock_info_list.stock_ticker%type);
 
 end finance_analysis;
 /
@@ -195,16 +199,20 @@ as
             twizzer_bottom      (stock.stock_ticker);
             twizzer_top         (stock.stock_ticker);
 
-            bullish_englufing   (stock.stock_ticker);
-            bearish_englufing   (stock.stock_ticker);
-            bullish_harami      (stock.stock_ticker);
-            bearish_harami      (stock.stock_ticker);
+            -- Bullish Reversal Patterns
+            bullish_englufing(stock.stock_ticker);
+            bullish_harami   (stock.stock_ticker);
+            morning_star     (stock.stock_ticker);
 
-            dragonfly_doji      (stock.stock_ticker);
-            gravestone_doji     (stock.stock_ticker);
+            --Bearish Reversal Patterns
+            bearish_englufing(stock.stock_ticker);
+            bearish_harami   (stock.stock_ticker);
+            evening_star     (stock.stock_ticker);
 
-            evening_star        (stock.stock_ticker);
-            morning_star        (stock.stock_ticker);
+            --Single-Candle Patterns
+	        dragonfly_doji	 (stock.stock_ticker);
+            gravestone_doji	 (stock.stock_ticker);
+            shooting_star    (stock.stock_ticker);
 
         end loop;
     end find_candle_stick_pattern;
@@ -251,7 +259,7 @@ as
           -- check 3 :- find day 1 open about equal to day 2 close
 
          v_smoothing_value := v_price_open * const_smoothing_factor;
-         check_equality := v_smoothing_value >= abs(v_price_open - v_price_close_2);
+         check_equality := v_smoothing_value/2 >= abs(v_price_open - v_price_close_2);
          if check_equality then
             v_finding_counter := v_finding_counter + 1;
             v_full_discription := v_full_discription || ' 3. TWIZZER BOTTOM FOUND , ' || 'Open Day 1 Price : ' || v_price_open || ' Close Day 2 Price : ' ||  v_price_close_2;
@@ -319,7 +327,7 @@ as
          -- check 3 :- find day 1 open about equal to day 2 close
 
          v_smoothing_value := v_price_open * const_smoothing_factor;
-         check_equality := v_smoothing_value >= abs(v_price_open - v_price_close_2);
+         check_equality := v_smoothing_value/2 >= abs(v_price_open - v_price_close_2);
          if check_equality then
             v_finding_counter := v_finding_counter + 1;
             v_full_discription := v_full_discription || ' 3. TWIZZER TOP FOUND , ' || 'Open Day 1 Price : ' || v_price_open || ' Close Day 2 Price : ' ||  v_price_close_2;
@@ -968,6 +976,75 @@ as
          end if;
 
     end morning_star;
+
+
+	procedure shooting_star	 (in_stock_ticker    stock_info_list.stock_ticker%type)
+	as
+        v_finding_type      varchar2(50)    := 'BEARISH_SHOOTING_STAR';
+        v_finding_counter   number default 0;
+        v_price_high		number;
+        v_price_low         number;
+        check_equality      boolean;
+	begin
+
+          truncate_table('stg_stock_price_data');
+          v_full_discription := '';
+
+          -- load only 15 days data for particular stock in stg table
+          insert into stg_stock_price_data
+            select * from (select * from stock_price_data where stock_ticker = in_stock_ticker order by business_date desc) where rownum < 16;
+          select max(business_date) into v_max_date from stg_stock_price_data;
+
+          -- load days data
+
+		  select price_open, price_close,price_high,price_low into v_price_open, v_price_close,v_price_high,v_price_low
+            from stg_stock_price_data where business_date = v_max_date;
+          v_smoothing_value := v_price_open * const_smoothing_factor;
+
+         -- check 1 :- lastest candle must be Bearish and small body
+         if v_price_close > v_price_open then
+            if v_smoothing_value*3 >= abs(v_price_open - v_price_close) then
+                v_finding_counter := v_finding_counter + 1;
+                v_full_discription := v_full_discription || ' 1. Small Bearish Body Found , ' || 'Open Price : ' || round(v_price_open,3) || ' Close Price : ' ||  round(v_price_close,3);
+            end if;
+         end if;
+
+         -- Almost no lower shadow
+
+
+        if v_smoothing_value*.5 >= abs(v_price_low - v_price_close) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 2. Almost no lower shadow  , ' || 'Close Price : ' || round(v_price_close,3) || ' low Price : ' ||  round(v_price_low,3);
+        end if;
+
+
+
+         -- Double long upper shadow than body
+
+
+        if v_smoothing_value*6 <= abs( v_price_open - v_price_high) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 3. More Than Double Upper Shadow  , ' || 'Open Price : ' || round(v_price_open,3) || ' High Price : ' ||  round(v_price_high,3);
+        end if;
+
+
+
+          -- check 4 up trend  :-
+
+          select price_open,price_close into v_price_open_2, v_price_close_2
+                 from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
+          if v_price_open_2 < v_price_close then
+            v_finding_counter := v_finding_counter + 1;
+            v_green_percentage := ROUND(((v_price_close - v_price_open_2)/v_price_close)*100,3);
+            v_full_discription := v_full_discription || ' 4. Uptrend confirmed with percentage ' || v_green_percentage;
+          end if;
+
+         if v_finding_counter = 4 then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
+            commit;
+         end if;
+	end shooting_star;
+
 
 end finance_analysis;
 /
