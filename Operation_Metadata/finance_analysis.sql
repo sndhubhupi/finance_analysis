@@ -34,6 +34,9 @@ as
 	procedure dragonfly_doji	 (in_stock_ticker    stock_info_list.stock_ticker%type);
     procedure gravestone_doji	 (in_stock_ticker    stock_info_list.stock_ticker%type);
 
+    procedure evening_star     (  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure morning_star     (  in_stock_ticker    stock_info_list.stock_ticker%type);
+
 end finance_analysis;
 /
 
@@ -200,6 +203,9 @@ as
             dragonfly_doji      (stock.stock_ticker);
             gravestone_doji     (stock.stock_ticker);
 
+            evening_star        (stock.stock_ticker);
+            morning_star        (stock.stock_ticker);
+
         end loop;
     end find_candle_stick_pattern;
 
@@ -341,6 +347,8 @@ as
         v_finding_type      varchar2(50)    := 'BULLISH_ENGULFING';
         v_finding_counter   number default 0;
         check_equality      boolean;
+        v_price_high_2      number;
+        v_price_low_2       number;
     begin
           truncate_table('stg_stock_price_data');
           v_full_discription := '';
@@ -365,7 +373,7 @@ as
 
           select max(business_date) into v_yesterday_date from stg_stock_price_data
             where business_date != v_max_date;
-          select price_open, price_close into v_price_open_2, v_price_close_2
+          select price_open, price_close,price_high,price_low into v_price_open_2, v_price_close_2,v_price_high_2,v_price_low_2
             from stg_stock_price_data where business_date = v_yesterday_date;
 
           if v_price_close_2 < v_price_open_2 then
@@ -387,18 +395,24 @@ as
             v_full_discription := v_full_discription || ' 4. Gap Down  Rejected , ' || 'Close Price : ' || round(v_price_close,3) || ' Previous Day Open Price : ' ||  round(v_price_open_2,3);
          end if;
 
+         -- check 5 :- checking for harami pattern, previous candle must be in latest day body
+         if (v_price_close > v_price_high_2)  and (v_price_open < v_price_low_2) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 5. BULLISH ENGLUFING PATTERN FOUND , ' ;
+         end if;
 
-          -- check 5 Down trend confirmed :-
+
+          -- check 6 Down trend confirmed :-
 
           select price_open,price_close into v_price_open, v_price_close
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 < v_price_open then
             --v_finding_counter := v_finding_counter + 1;
             v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' 5. Downtrend confirmed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' 6. Downtrend confirmed with percentage ' || v_red_percentage;
           end if;
 
-          if v_finding_counter = 4 then
+          if v_finding_counter = 5 then
             insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
             commit;
           end if;
@@ -483,6 +497,8 @@ as
         v_finding_type      varchar2(50)    := 'BEARISH_ENGULFING';
         v_finding_counter   number default 0;
         check_equality      boolean;
+        v_price_high_2      number;
+        v_price_low_2       number;
     begin
           truncate_table('stg_stock_price_data');
           v_full_discription := '';
@@ -509,7 +525,7 @@ as
 
           select max(business_date) into v_yesterday_date from stg_stock_price_data
             where business_date != v_max_date;
-          select price_open, price_close into v_price_open_2, v_price_close_2
+          select price_open, price_close,price_high,price_low into v_price_open_2, v_price_close_2,v_price_high_2,v_price_low_2
             from stg_stock_price_data where business_date = v_yesterday_date;
 
           if v_price_close_2 > v_price_open_2 then
@@ -531,17 +547,23 @@ as
             v_full_discription := v_full_discription || ' 4. Gap Up  Rejected , ' || 'Close Price : ' || round(v_price_close,3) || ' Previous Day Open Price : ' ||  round(v_price_open_2,3);
          end if;
 
-          -- check 5 Up trend confirmation:-
+         -- check 5 :- checking for harami pattern, previous  candle must be in latest day body
+         if (v_price_open > v_price_high_2)  and (v_price_close < v_price_low_2) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 5. BEARISH ENGLUFING PATTERN FOUND , ' ;
+         end if;
+
+          -- check 6 Up trend confirmation:-
 
           select price_open,price_close into v_price_open, v_price_close
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 > v_price_close then
             --v_finding_counter := v_finding_counter + 1;
             v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' 5. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' 6. Uptrend confirmed with percentage ' || v_green_percentage;
           end if;
 
-          if v_finding_counter = 4 then
+          if v_finding_counter = 5 then
             insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
             commit;
           end if;
@@ -598,7 +620,7 @@ as
          end if;
 
          -- check 4 :- checking for harami pattern, new candle must be in previous day body
-         if (v_price_open_2 < v_price_low)  or (v_price_close_2 > v_price_high) then
+         if (v_price_open_2 < v_price_low)  and (v_price_close_2 > v_price_high) then
             v_finding_counter := v_finding_counter + 1;
             v_full_discription := v_full_discription || ' 4. HARAMI PATTERN FOUND , ' || 'Previous Open Price : ' || round(v_price_open_2,3) || ' Day low Price : ' ||  round(v_price_low,3);
             v_full_discription := v_full_discription || ' 4. HARAMI PATTERN FOUND , ' || 'Previous Close Price : ' || round(v_price_close_2,3) || ' Day high Price : ' ||  round(v_price_high,3);
@@ -777,6 +799,175 @@ as
             commit;
          end if;
 	end gravestone_doji;
+
+    procedure evening_star     (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        v_finding_type      varchar2(50)    := 'EVENING_STAR';
+        v_finding_counter   number default 0;
+        v_price_high		number;
+        v_price_low         number;
+        v_price_open_3      number;
+        v_price_close_3       number;
+        check_equality      boolean;
+        v_day_3_date        date;
+    begin
+          truncate_table('stg_stock_price_data');
+          v_full_discription := '';
+          -- load only 15 days data for particular stock in stg table
+          insert into stg_stock_price_data
+            select * from (select * from stock_price_data where stock_ticker = in_stock_ticker order by business_date desc) where rownum < 16;
+          select max(business_date) into v_max_date from stg_stock_price_data;
+
+          -- load lastest day data
+		  select price_open, price_close,price_high,price_low into v_price_open, v_price_close,v_price_high,v_price_low
+            from stg_stock_price_data where business_date = v_max_date;
+          -- Load previous day data
+          select max(business_date) into v_yesterday_date from stg_stock_price_data
+            where business_date != v_max_date;
+          select price_open, price_close into v_price_open_2, v_price_close_2
+            from stg_stock_price_data where business_date = v_yesterday_date;
+         -- Load day before previous i.e 3rd candle data
+          select max(business_date) into v_day_3_date from stg_stock_price_data
+            where business_date != v_yesterday_date and business_date != v_max_date;
+          select price_open, price_close into v_price_open_3, v_price_close_3
+            from stg_stock_price_data where business_date = v_day_3_date;
+
+         -- check 1 :- lastest candle must be Bearish
+
+          if v_price_close < v_price_open then
+            v_finding_counter := v_finding_counter + 1;
+            v_red_percentage := ROUND(((v_price_open - v_price_close)/v_price_open)*100,3);
+            v_full_discription := v_full_discription || ' 1. Latest Bearish candle formed with percentage ' || v_red_percentage;
+          end if;
+
+          -- check 2 : small candle like doji
+
+         v_smoothing_value := v_price_open_2 * const_smoothing_factor;
+         --check_equality := const_smoothing_factor >= abs(v_price_open - v_price_close);
+         if v_smoothing_value*3 >= abs(v_price_open_2 - v_price_close_2) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 2. Middle Candle Doji Formation , ' || 'Open Price : ' || round(v_price_open_2,3) || ' Close Price : ' ||  round(v_price_close_2,3);
+         end if;
+
+        -- check 3 : last/3rd candle is bullish
+          if v_price_close_3 > v_price_open_3 then
+            v_finding_counter := v_finding_counter + 1;
+            v_green_percentage := ROUND(((v_price_close_3 - v_price_open_3)/v_price_open_3)*100,3);
+            v_full_discription := v_full_discription || ' 3. Last/3rd Bullish candle formed with percentage ' || v_green_percentage;
+          end if;
+
+        -- check 4 : second candle must be gap up, open of middle candle must be greater than close of last/3rd day
+         if v_price_open_2  > v_price_close_3 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 4. Second Candle Gap Up  , ' || 'Open Price of middle candle : ' || round(v_price_open_2,3) || ' Previous Day Close Price : ' ||  round(v_price_close_3,3);
+         end if;
+
+        --check 5 : Latest candle must be gap down, Open of latest day must be lower than close of middle candle
+         if v_price_open  < v_price_close_2 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 5. Latest Candle Gap down  , ' || 'Open Price : ' || round(v_price_open,3) || ' Previous Day Close Price : ' ||  round(v_price_close_2,3);
+         end if;
+
+        -- check 6 : Uptrend
+          select price_open,price_close into v_price_open, v_price_close
+                 from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
+          if v_price_close_2 > v_price_close then
+            --v_finding_counter := v_finding_counter + 1;
+            v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
+            v_full_discription := v_full_discription || ' 6. Uptrend confirmed with percentage ' || v_green_percentage;
+          end if;
+
+         if v_finding_counter = 5 then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
+            commit;
+         end if;
+
+    end evening_star;
+
+
+    procedure morning_star     (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        v_finding_type      varchar2(50)    := 'MORNING_STAR';
+        v_finding_counter   number default 0;
+        v_price_high		number;
+        v_price_low         number;
+        v_price_open_3      number;
+        v_price_close_3       number;
+        check_equality      boolean;
+        v_day_3_date        date;
+    begin
+          truncate_table('stg_stock_price_data');
+          v_full_discription := '';
+          -- load only 15 days data for particular stock in stg table
+          insert into stg_stock_price_data
+            select * from (select * from stock_price_data where stock_ticker = in_stock_ticker order by business_date desc) where rownum < 16;
+          select max(business_date) into v_max_date from stg_stock_price_data;
+
+          -- load lastest day data
+		  select price_open, price_close,price_high,price_low into v_price_open, v_price_close,v_price_high,v_price_low
+            from stg_stock_price_data where business_date = v_max_date;
+          -- Load previous day data
+          select max(business_date) into v_yesterday_date from stg_stock_price_data
+            where business_date != v_max_date;
+          select price_open, price_close into v_price_open_2, v_price_close_2
+            from stg_stock_price_data where business_date = v_yesterday_date;
+         -- Load day before previous i.e 3rd candle data
+          select max(business_date) into v_day_3_date from stg_stock_price_data
+            where business_date != v_yesterday_date and business_date != v_max_date;
+          select price_open, price_close into v_price_open_3, v_price_close_3
+            from stg_stock_price_data where business_date = v_day_3_date;
+
+         -- check 1 :- lastest candle must be Bearish
+
+          if v_price_close > v_price_open then
+            v_finding_counter := v_finding_counter + 1;
+            v_green_percentage := ROUND(((v_price_close - v_price_open)/v_price_open)*100,3);
+            v_full_discription := v_full_discription || ' 1. Lastest Bullish candle formed with percentage ' || v_green_percentage;
+          end if;
+
+          -- check 2 : small candle like doji
+
+         v_smoothing_value := v_price_open_2 * const_smoothing_factor;
+         --check_equality := const_smoothing_factor >= abs(v_price_open - v_price_close);
+         if v_smoothing_value*3 >= abs(v_price_open_2 - v_price_close_2) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 2. Middle Candle Doji Formation , ' || 'Open Price : ' || round(v_price_open_2,3) || ' Close Price : ' ||  round(v_price_close_2,3);
+         end if;
+
+        -- check 3 : last/3rd candle is bullish
+          if v_price_close_3 < v_price_open_3 then
+            v_finding_counter := v_finding_counter + 1;
+            v_red_percentage := ROUND(((v_price_open_3 - v_price_close_3)/v_price_open_3)*100,3);
+            v_full_discription := v_full_discription || ' 3. Last/3rd Bearish candle formed with percentage ' || v_red_percentage;
+          end if;
+
+        -- check 4 : Latest candle must be gap up, open of lastest candle must be greater than close of previous day
+         if v_price_open  > v_price_close_2 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 4. Latest Candle Gap Up  , ' || 'Open Price of Latest candle : ' || round(v_price_open,3) || ' Previous Day Close Price : ' ||  round(v_price_close_2,3);
+         end if;
+
+        --check 5 : Second/Doji candle must be gap down, Open of Second/Doji day must be lower than close of last/3rd candle
+         if v_price_open_2  < v_price_close_3 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' 5. Second/Doji Candle Gap down  , ' || 'Open Price : ' || round(v_price_open_2,3) || ' Previous Day Close Price : ' ||  round(v_price_close_3,3);
+         end if;
+
+        -- check 6 : Downtrend
+          select price_open,price_close into v_price_open, v_price_close
+                 from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
+          if v_price_close_2 < v_price_open then
+            --v_finding_counter := v_finding_counter + 1;
+            v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
+            v_full_discription := v_full_discription || ' 6. Downtrend confirmed with percentage ' || v_red_percentage;
+          end if;
+
+         if v_finding_counter = 5  then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
+            commit;
+         end if;
+
+    end morning_star;
 
 end finance_analysis;
 /
