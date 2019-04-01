@@ -18,7 +18,10 @@ as
     procedure truncate_table (in_table_name     varchar2);
     procedure load_price_data_from_stg;
     procedure load_stock_list_from_stg;
-    procedure calc_moving_average;
+    procedure calc_moving_average_200;
+    procedure calc_moving_average_50;
+    procedure calc_moving_average_10;
+    procedure calc_moving_average_8;    
     procedure update_earliest_latest_dt;
 
     procedure find_candle_stick_pattern;
@@ -130,7 +133,7 @@ as
     end load_stock_list_from_stg;
 
 
-    procedure calc_moving_average
+    procedure calc_moving_average_200
     as
     begin
         update stock_price_data set dma_200 =
@@ -143,7 +146,11 @@ as
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
+    end calc_moving_average_200;
 
+    procedure calc_moving_average_50
+    as
+    begin
         update stock_price_data set dma_50 =
             (select dma_50 from
                 (select stock_ticker,business_date,
@@ -154,7 +161,11 @@ as
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
+    end calc_moving_average_50;    
 
+    procedure calc_moving_average_10
+    as
+    begin
         update stock_price_data set dma_10 =
             (select dma_10 from
                 (select stock_ticker,business_date,
@@ -165,7 +176,11 @@ as
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
+    end calc_moving_average_10;   
 
+    procedure calc_moving_average_8
+    as
+    begin
         update stock_price_data set dma_8 =
             (select dma_8 from
                 (select stock_ticker,business_date,
@@ -177,8 +192,8 @@ as
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
 
-    end calc_moving_average;
-
+    end calc_moving_average_8;    
+    
     procedure update_earliest_latest_dt
     as
     begin
