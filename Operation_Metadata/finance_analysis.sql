@@ -92,8 +92,8 @@ as
     function out_candle_stick_pattern
         return tab_findings pipelined
     is
-        cursor finding_list is
-            select * from (
+        cursor finding_list is select * from findings;
+           /* select * from (
                 select distinct
                     t.stock_ticker, t.business_date,t.finding_type,
                     trim(regexp_substr(t.full_discription, '[^$$]+', 1, levels.column_value))  as Full_Disc
@@ -101,7 +101,7 @@ as
                     findings t,
                     table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.full_discription, '[^$$]+'))  + 1) as sys.OdciNumberList)) levels
                 order by stock_ticker)
-            where full_disc is not null;
+            where full_disc is not null;*/
     begin
         for rec in finding_list
             loop
@@ -223,7 +223,7 @@ as
             -- load only 15 days data for particular stock in stg table
             insert into stg_stock_price_data
                 select * from (select * from stock_price_data where stock_ticker = stock.stock_ticker order by business_date desc) where rownum < 16;
-            
+
             twizzer_bottom      (stock.stock_ticker);
             twizzer_top         (stock.stock_ticker);
 
@@ -238,7 +238,7 @@ as
             bearish_harami   (stock.stock_ticker);
             evening_star     (stock.stock_ticker);
             top_abondoned_baby(stock.stock_ticker);
-            
+
             --Single-Candle Patterns
 	        dragonfly_doji	 (stock.stock_ticker);
             gravestone_doji	 (stock.stock_ticker);
@@ -255,7 +255,7 @@ as
     begin
           v_full_discription := '';
           select max(business_date) into v_max_date from stg_stock_price_data;
-           
+
           -- check 1 :- last candle must be bullish
 
           select price_open, price_close into v_price_open, v_price_close
@@ -263,8 +263,7 @@ as
 
           if v_price_close > v_price_open then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close - v_price_open)/v_price_open)*100,3);
-            v_full_discription := v_full_discription || ' $$ 1. Bullish candle formed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 1. Bullish candle formed';
           end if;
 
           -- check 2 :- previous day candle must be bearish
@@ -276,8 +275,7 @@ as
 
           if v_price_close_2 < v_price_open_2 then
             v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open_2 - v_price_close_2)/v_price_open_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 2. Bearish candle formed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 2. Bearish candle formed';
           end if;
 
 
@@ -287,7 +285,7 @@ as
          check_equality := v_smoothing_value/2 >= abs(v_price_open - v_price_close_2);
          if check_equality then
             v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 3. TWIZZER BOTTOM FOUND , ' || 'Open Day 1 Price : ' || v_price_open || ' Close Day 2 Price : ' ||  v_price_close_2;
+            v_full_discription := v_full_discription || ' $$ 3. TWIZZER BOTTOM FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
          end if;
 
 
@@ -297,8 +295,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 < v_price_open then
             --v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 4. Downtrend confirmed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 4. Downtrend confirmed';
           end if;
 
           if v_finding_counter = 3 then
@@ -325,8 +322,7 @@ as
 
           if v_price_close < v_price_open then
             v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close)/v_price_open)*100,3);
-            v_full_discription := v_full_discription || ' $$ 1. Bearish candle formed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 1. Bearish candle formed';
           end if;
 
 
@@ -340,8 +336,7 @@ as
 
           if v_price_close_2 > v_price_open_2 then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_open_2)/v_price_open_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 2. Bullish candle formed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 2. Bullish candle formed';
           end if;
 
          -- check 3 :- find day 1 open about equal to day 2 close
@@ -350,7 +345,7 @@ as
          check_equality := v_smoothing_value/2 >= abs(v_price_open - v_price_close_2);
          if check_equality then
             v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 3. TWIZZER TOP FOUND , ' || 'Open Day 1 Price : ' || v_price_open || ' Close Day 2 Price : ' ||  v_price_close_2;
+            v_full_discription := v_full_discription || ' $$ 3. TWIZZER TOP FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
          end if;
 
           -- check 4 checking for uptrend in twizzer top:-
@@ -359,8 +354,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 > v_price_close then
             --v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 4. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 4. Uptrend confirmed';
           end if;
 
           if v_finding_counter = 3 then
@@ -388,8 +382,7 @@ as
 
           if v_price_close > v_price_open then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close - v_price_open)/v_price_open)*100,3);
-            v_full_discription := v_full_discription || ' $$ 1. Bullish candle formed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 1. Bullish candle formed';
           end if;
 
           -- check 2 :- previous day candle must be bearish
@@ -401,8 +394,7 @@ as
 
           if v_price_close_2 < v_price_open_2 then
             v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open_2 - v_price_close_2)/v_price_open_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 2. Bearish candle formed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 2. Bearish candle formed';
           end if;
 
 
@@ -430,9 +422,8 @@ as
           select price_open,price_close into v_price_open, v_price_close
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 < v_price_open then
-            --v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 6. Downtrend confirmed with percentage ' || v_red_percentage;
+            --v_finding_counter := v_finding_counter + 1
+            v_full_discription := v_full_discription || ' $$ 6. Downtrend confirmed';
           end if;
 
           if v_finding_counter = 5 then
@@ -460,8 +451,7 @@ as
 
           if v_price_close > v_price_open then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close - v_price_open)/v_price_open)*100,3);
-            v_full_discription := v_full_discription || ' $$ 1. Bullish candle formed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 1. Bullish candle formed';
           end if;
 
           -- check 2 :- previous day candle must be bearish
@@ -473,8 +463,7 @@ as
 
           if v_price_close_2 < v_price_open_2 then
             v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open_2 - v_price_close_2)/v_price_open_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 2. Bearish candle formed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 2. Bearish candle formed';
           end if;
 
 
@@ -498,8 +487,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 < v_price_open then
             --v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 5. Downtrend confirmed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 5. Downtrend confirmed';
           end if;
 
           if v_finding_counter = 4 then
@@ -528,8 +516,7 @@ as
 
           if v_price_close < v_price_open then
             v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close)/v_price_open)*100,3);
-            v_full_discription := v_full_discription || ' $$ 1. Bearish candle formed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 1. Bearish candle formed';
           end if;
 
 
@@ -543,8 +530,7 @@ as
 
           if v_price_close_2 > v_price_open_2 then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_open_2)/v_price_open_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 2. Bullish candle formed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 2. Bullish candle formed';
           end if;
 
 
@@ -572,8 +558,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 > v_price_close then
             --v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 6. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 6. Uptrend confirmed';
           end if;
 
           if v_finding_counter = 5 then
@@ -601,8 +586,7 @@ as
 
           if v_price_close < v_price_open then
             v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close)/v_price_open)*100,3);
-            v_full_discription := v_full_discription || ' $$ 1. Bearish candle formed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 1. Bearish candle formed';
           end if;
 
 
@@ -616,8 +600,7 @@ as
 
           if v_price_close_2 > v_price_open_2 then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_open_2)/v_price_open_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 2. Bullish candle formed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 2. Bullish candle formed ';
           end if;
 
 
@@ -640,8 +623,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 > v_price_close then
             --v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 5. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 5. Uptrend confirmed';
           end if;
 
           if v_finding_counter = 4 then
@@ -714,8 +696,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_open < v_price_close_2  then
             --v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_close_2  - v_price_open)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 4. Downtrend confirmed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 4. Downtrend confirmed .';
           end if;
 
          if v_finding_counter = 3 then
@@ -787,8 +768,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_open_2 < v_price_close then
             --v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close - v_price_open_2)/v_price_close)*100,3);
-            v_full_discription := v_full_discription || ' $$ 4. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 4. Uptrend confirmed .';
           end if;
 
          if v_finding_counter = 3 then
@@ -864,8 +844,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 > v_price_close then
             --v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 6. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 6. Uptrend confirmed .';
           end if;
 
          if v_finding_counter = 5 then
@@ -885,7 +864,7 @@ as
         v_price_high_2		number;
         v_price_low_2       number;
         v_price_high_3		number;
-        v_price_low_3       number;        
+        v_price_low_3       number;
         v_price_open_3      number;
         v_price_close_3       number;
         check_equality      boolean;
@@ -946,8 +925,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 > v_price_close then
             --v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 6. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 6. Uptrend confirmed.';
           end if;
 
          if v_finding_counter = 5 then
@@ -955,8 +933,8 @@ as
             commit;
          end if;
 
-    end top_abondoned_baby;    
-    
+    end top_abondoned_baby;
+
 
     procedure morning_star     (  in_stock_ticker    stock_info_list.stock_ticker%type)
     as
@@ -1025,8 +1003,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 < v_price_open then
             --v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 6. Downtrend confirmed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 6. Downtrend confirmed .';
           end if;
 
          if v_finding_counter = 5  then
@@ -1035,7 +1012,7 @@ as
          end if;
 
     end morning_star;
-    
+
 
    procedure bottom_abondoned_baby     (  in_stock_ticker    stock_info_list.stock_ticker%type)
     as
@@ -1046,7 +1023,7 @@ as
         v_price_high_2		number;
         v_price_low_2       number;
         v_price_high_3		number;
-        v_price_low_3       number;        
+        v_price_low_3       number;
         v_price_open_3      number;
         v_price_close_3       number;
         check_equality      boolean;
@@ -1107,8 +1084,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_close_2 < v_price_open then
             --v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close_2)/v_price_close_2)*100,3);
-            v_full_discription := v_full_discription || ' $$ 6. Downtrend confirmed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 6. Downtrend confirmed ';
           end if;
 
          if v_finding_counter = 5  then
@@ -1116,7 +1092,7 @@ as
             commit;
          end if;
 
-    end bottom_abondoned_baby;    
+    end bottom_abondoned_baby;
 
 
 	procedure shooting_star	 (in_stock_ticker    stock_info_list.stock_ticker%type)
@@ -1171,8 +1147,7 @@ as
                  from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
           if v_price_open_2 < v_price_close then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close - v_price_open_2)/v_price_close)*100,3);
-            v_full_discription := v_full_discription || ' $$ 4. Uptrend confirmed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 4. Uptrend confirmed ';
           end if;
 
          if v_finding_counter = 4 then

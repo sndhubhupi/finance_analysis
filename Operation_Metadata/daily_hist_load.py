@@ -1,5 +1,6 @@
 import To_Oracle
 import From_Oracle
+import To_Telegram
 import pandas as pd
 
 def load_daily_price_data() :
@@ -13,9 +14,12 @@ def load_daily_price_data() :
 
 
 
-load_daily_price_data()
-To_Oracle.find_candle_stick_pattern()
+#load_daily_price_data()
+#To_Oracle.find_candle_stick_pattern()
 findings = From_Oracle.fetch_candlestick_findings()
+for x in findings:
+    To_Telegram.sendTelegram(x,464308445)
+    To_Telegram.sendTelegram(x, 506426930)
 labels = ['Stock Ticker', 'Date', 'Finding_Type', 'Discription']
 df = pd.DataFrame.from_records(findings, columns=labels)
 df.to_csv('Findings.csv')

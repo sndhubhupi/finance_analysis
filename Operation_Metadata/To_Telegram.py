@@ -1,9 +1,17 @@
 import telegram
 import requests
+import time
 
-#bot = telegram.Bot(token='bot564398612:AAEXUIfrJVFHfBnxS4Uot0Ob5vDPN8Ws69I')
-#url = "https://api.telegram.org/bot564398612:AAEXUIfrJVFHfBnxS4Uot0Ob5vDPN8Ws69I/sendDocument?chat_id=464308445&document='/Users/sandhu/PycharmProjects/Finance_Analysis/Operation_Metadata/Files_To_Process/stock_list.csv'"
-#dict = {'chat_id':464308445}
-#r = requests.post(url)
-#print(r);
+
+def sendTelegram(totalResponse, chatId):
+    try:
+        print("in sendTelegram", totalResponse)
+        bot_id = "bot564398612:AAEXUIfrJVFHfBnxS4Uot0Ob5vDPN8Ws69I"
+        url = "https://api.telegram.org/" + bot_id + "/sendMessage?chat_id=" + str(chatId) + "&text= " + str(totalResponse)
+        requests.get(url)
+        return True
+    except Exception as e:
+        print(e)
+        time.sleep(30)
+        sendTelegram(totalResponse, chatId)
 
