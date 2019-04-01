@@ -65,13 +65,27 @@ def load_stock_prize_to_db(stock_dt_range):
     print 'load_stock_prize_to_db finshed'
 
 def calc_moving_average():
-    print 'Moving Average calculation started'
     cur = conn_str.cursor()
-    cur.callproc('finance_analysis.calc_moving_average')
+    
+    print 'Moving Average 200 calculation started '
+    cur.callproc('finance_analysis.calc_moving_average_200')
+    print 'Moving Average calculation finished'
+
+    print 'Moving Average 50 calculation started'
+    cur.callproc('finance_analysis.calc_moving_average_50')
+    print 'Moving Average calculation finished'
+
+    print 'Moving Average 10 calculation started'
+    cur.callproc('finance_analysis.calc_moving_average_10')
+    print 'Moving Average calculation finished'
+
+    print 'Moving Average 8 calculation started'
+    cur.callproc('finance_analysis.calc_moving_average_8')
+    print 'Moving Average calculation finished'
+    
     cur.close()
     conn_str.commit()
     #conn_str.close()
-    print 'Moving Average calculation finished'
 
 def update_earliest_latest_dt():
         print 'update_earliest_latest_dt calculation started'
