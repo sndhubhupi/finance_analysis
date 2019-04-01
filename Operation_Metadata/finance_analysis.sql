@@ -825,8 +825,7 @@ as
 
           if v_price_close < v_price_open then
             v_finding_counter := v_finding_counter + 1;
-            v_red_percentage := ROUND(((v_price_open - v_price_close)/v_price_open)*100,3);
-            v_full_discription := v_full_discription || ' $$ 1. Latest Bearish candle formed with percentage ' || v_red_percentage;
+            v_full_discription := v_full_discription || ' $$ 1. Latest Bearish candle formed';
           end if;
 
           -- check 2 : small candle like doji
@@ -841,8 +840,7 @@ as
         -- check 3 : last/3rd candle is bullish
           if v_price_close_3 > v_price_open_3 then
             v_finding_counter := v_finding_counter + 1;
-            v_green_percentage := ROUND(((v_price_close_3 - v_price_open_3)/v_price_open_3)*100,3);
-            v_full_discription := v_full_discription || ' $$ 3. Last/3rd Bullish candle formed with percentage ' || v_green_percentage;
+            v_full_discription := v_full_discription || ' $$ 3. Last/3rd Bullish candle formed ';
           end if;
 
         -- check 4 : second candle must be gap up, open of middle candle must be greater than close of last/3rd day
@@ -873,6 +871,88 @@ as
 
     end evening_star;
 
+
+    procedure top_abondoned_baby     (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        v_finding_type      varchar2(50)    := 'TOP_ABONDONED_BABY';
+        v_finding_counter   number default 0;
+        v_price_high		number;
+        v_price_low         number;
+        v_price_high_2		number;
+        v_price_low_2       number;
+        v_price_high_3		number;
+        v_price_low_3       number;        
+        v_price_open_3      number;
+        v_price_close_3       number;
+        check_equality      boolean;
+        v_day_3_date        date;
+    begin
+          v_full_discription := '';
+          select max(business_date) into v_max_date from stg_stock_price_data;
+
+          -- load lastest day data
+		  select price_open, price_close,price_high,price_low into v_price_open, v_price_close,v_price_high,v_price_low
+            from stg_stock_price_data where business_date = v_max_date;
+          -- Load previous day data
+          select max(business_date) into v_yesterday_date from stg_stock_price_data
+            where business_date != v_max_date;
+          select price_open, price_close,price_high,price_low into v_price_open_2, v_price_close_2 ,v_price_high_2,v_price_low_2
+            from stg_stock_price_data where business_date = v_yesterday_date;
+         -- Load day before previous i.e 3rd candle data
+          select max(business_date) into v_day_3_date from stg_stock_price_data
+            where business_date != v_yesterday_date and business_date != v_max_date;
+          select price_open, price_close,price_high,price_low into v_price_open_3, v_price_close_3,v_price_high_3,v_price_low_3
+            from stg_stock_price_data where business_date = v_day_3_date;
+         -- check 1 :- lastest candle must be Bearish
+
+          if v_price_close < v_price_open then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 1. Latest Bearish candle formed';
+          end if;
+
+          -- check 2 : small candle like doji
+
+         v_smoothing_value := v_price_open_2 * const_smoothing_factor;
+         --check_equality := const_smoothing_factor >= abs(v_price_open - v_price_close);
+         if v_smoothing_value >= abs(v_price_open_2 - v_price_close_2) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 2. Middle Candle Doji Formation , ' || 'Open Price : ' || round(v_price_open_2,3) || ' Close Price : ' ||  round(v_price_close_2,3);
+         end if;
+
+        -- check 3 : last/3rd candle is bullish
+          if v_price_close_3 > v_price_open_3 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 3. Last/3rd Bullish candle formed';
+          end if;
+
+        -- check 4 : second candle must be gap up, low of middle candle must be greater than high of last/3rd day
+         if v_price_low_2  > v_price_high_3 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 4. Second Candle Gap Up  , ' || 'low Price of middle candle : ' || round(v_price_low_2,3) || ' Previous Day high Price : ' ||  round(v_price_high_3,3);
+         end if;
+
+        --check 5 : Latest candle must be gap down, high of latest day must be lower than low of middle candle
+         if v_price_high  < v_price_low_2 then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 5. Latest Candle Gap down  , ' || 'High Price : ' || round(v_price_high,3) || ' Previous Day low Price : ' ||  round(v_price_low_2,3);
+         end if;
+
+        -- check 6 : Uptrend
+          select price_open,price_close into v_price_open, v_price_close
+                 from stg_stock_price_data where business_date = (select min(business_date) from stg_stock_price_data);
+          if v_price_close_2 > v_price_close then
+            --v_finding_counter := v_finding_counter + 1;
+            v_green_percentage := ROUND(((v_price_close_2 - v_price_close)/v_price_close_2)*100,3);
+            v_full_discription := v_full_discription || ' $$ 6. Uptrend confirmed with percentage ' || v_green_percentage;
+          end if;
+
+         if v_finding_counter = 5 then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription|| ' $$ SELL WITH STOP LOSS :' || round(v_price_high_2,3));
+            commit;
+         end if;
+
+    end top_abondoned_baby;    
+    
 
     procedure morning_star     (  in_stock_ticker    stock_info_list.stock_ticker%type)
     as
