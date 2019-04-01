@@ -93,11 +93,15 @@ as
         return tab_findings pipelined
     is
         cursor finding_list is
-            select stock_ticker,
-                   business_date,
-                   finding_type,
-                   full_discription
-        from findings;
+            select * from (
+                select distinct
+                    t.stock_ticker, t.business_date,t.finding_type,
+                    trim(regexp_substr(t.full_discription, '[^$$]+', 1, levels.column_value))  as Full_Disc
+                from
+                    findings t,
+                    table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.full_discription, '[^$$]+'))  + 1) as sys.OdciNumberList)) levels
+                order by stock_ticker)
+            where full_disc is not null;
     begin
         for rec in finding_list
             loop
@@ -163,7 +167,7 @@ as
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
-    end calc_moving_average_50;    
+    end calc_moving_average_50;
 
     procedure calc_moving_average_10
     as
@@ -178,7 +182,7 @@ as
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
-    end calc_moving_average_10;   
+    end calc_moving_average_10;
 
     procedure calc_moving_average_8
     as
@@ -194,8 +198,8 @@ as
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
 
-    end calc_moving_average_8;    
-    
+    end calc_moving_average_8;
+
     procedure update_earliest_latest_dt
     as
     begin
@@ -213,12 +217,12 @@ as
         truncate_table('findings');
         for stock in (select distinct stock_ticker from stock_info_list)
         loop
-        
+
             truncate_table('stg_stock_price_data');
-            
+
             -- load only 15 days data for particular stock in stg table
             insert into stg_stock_price_data
-                select * from (select * from stock_price_data where stock_ticker = in_stock_ticker order by business_date desc) where rownum < 16;
+                select * from (select * from stock_price_data where stock_ticker = stock.stock_ticker order by business_date desc) where rownum < 16;
             
             twizzer_bottom      (stock.stock_ticker);
             twizzer_top         (stock.stock_ticker);
