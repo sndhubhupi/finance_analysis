@@ -1,36 +1,50 @@
 # import external pandas_datareader library with alias of web
-import pandas_datareader as web
 import os as os
 import proj_constant_var as const
+import requests as request
+import csv
 
-# import datetime internal datetime module
-# datetime is a Python module
-import datetime
+default_files_dir = os.getcwd()+ const.folder_to_process_file
+download_folder = os.getcwd()+ const.downloaded_csv_folder
+stock_list_file_name =  default_files_dir + const.stock_list_file
+file_exists = os.path.isfile(stock_list_file_name)
+stock_list = [];
 
-def get_stock_price_dt_range(stock_ticker,start_date,end_date):
-    # DataReader method name is case sensitive
-    try :
-        print 'Start Fetching data for stock data for : ' + stock_ticker
-        df = web.DataReader(stock_ticker, 'yahoo', start_date, end_date)
-    #df = web.DataReader('TCS', 'google', start, end)
-    #df = web.DataReader('TCS', 'morningstar', start, end)
-    #df = web.DataReader('TCS', 'iex', start, end)
-    # invoke to_csv for df dataframe object from
-    # DataReader method in the pandas_datareader library
+def load_stock_list():
+    with open(stock_list_file_name, "r") as csv_file:
+        csv_reader = csv.DictReader(csv_file, delimiter=',')
+        for lines in csv_reader:
+            stock_list.append(lines['stock_ticker']);
 
-    # ..\first_yahoo_prices_to_csv_demo.csv must not
-    # be open in another app, such as Excel
-        default_dir = os.getcwd()+ const.folder_to_process_file
-        file_name = stock_ticker+'_'+str(start_date).replace("-","")[0:8]+'_'+str(end_date).replace("-","")[0:8]+'.csv'
-        file_path = default_dir+file_name
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        df.to_csv(file_path)
-        print 'Data for ' + stock_ticker + ' loaded into file :' + file_path
-        return file_path
-    except :
-        print "Chill bro, some issue with data fetching from yahoo " + stock_ticker
-        return "NA"
+def create_url(stock_ticker, api_key):
+    url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + stock_ticker + '&apikey=' + api_key + '&datatype=csv'
+    return url;
+
+def load_data_from_url_to_csv(url,stock_ticker):
+    #url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TCS.NSE&apikey=8EL6PXCIYJD56OE8&datatype=csv"
+    data = request.get(url);
+    decoded_content = data.content.decode('utf-8')
+    csv_file = stock_ticker+'.csv';
+    file_path = download_folder+csv_file;
+    if os.path.exists(file_path):
+        os.remove(file_path)
+    open(file_path, 'w').write(decoded_content);
+
+def run_load_for_stock_list(count):
+    for i in range(10):
+        for j in range(5):
+            if(count < len(stock_list)):
+                stock_ticker  = stock_list[count]
+                print "apikey " + const.api_keys[i] + " j value " + str(j) + " ticker " + stock_ticker;
+                url = create_url(stock_ticker,const.api_keys[i]);
+                load_data_from_url_to_csv(url,stock_ticker);
+                count = count + 1;
+            else:
+                break;
+    return count;
+
+load_stock_list()
+run_load_for_stock_list(0)
 
 
 

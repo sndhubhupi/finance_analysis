@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96ebf537-7b35-4005-a02b-4761da7d131a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/To_Telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/To_Telegram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Get_Prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Get_Prices.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/database_table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/database_table.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,88 +17,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/database_table.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="58" selection-start-line="58" selection-end-line="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Telegram.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/Get_Prices.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="28" />
+            <state relative-caret-position="96">
+              <caret line="31" selection-end-line="50" />
               <folding>
-                <element signature="e#62#93#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="1161" selection-start-line="1161" selection-end-line="1161" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="93" column="53" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
+                <element signature="e#62#77#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,18 +46,18 @@
       <list>
         <option value="$PROJECT_DIR$/Testing/Test.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/from_oracle.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/daily_hist_load.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/Get_Prices.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/temp.txt" />
         <option value="$PROJECT_DIR$/Operation_Metadata/From_Oracle.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/Findings.csv" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/To_Telegram.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/database_table.sql" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" />
         <option value="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/Findings.csv" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/To_Telegram.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/Get_Prices.py" />
       </list>
     </option>
   </component>
@@ -161,7 +89,7 @@
               <item name="Finance_Analysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="Finance_Analysis" type="462c0819:PsiDirectoryNode" />
               <item name="Operation_Metadata" type="462c0819:PsiDirectoryNode" />
-              <item name="Files_To_Process" type="462c0819:PsiDirectoryNode" />
+              <item name="Download_csv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -191,7 +119,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.daily_hist_load">
+  <component name="RunManager" selected="Python.Get_Prices">
     <configuration name="From_Oracle" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Finance_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -299,11 +227,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Get_Prices" />
         <item itemvalue="Python.daily_hist_load" />
         <item itemvalue="Python.To_Telegram" />
         <item itemvalue="Python.To_Oracle" />
         <item itemvalue="Python.From_Oracle" />
-        <item itemvalue="Python.Get_Prices" />
       </list>
     </recent_temporary>
   </component>
@@ -333,12 +261,12 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25893566" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25893566" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4988086" visible="true" weight="0.29041097" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4988086" visible="true" weight="0.29041097" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -357,14 +285,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Operation_Metadata/Get_Prices.py</url>
-          <line>11</line>
-          <option name="timeStamp" value="3" />
+          <line>23</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>request.get(url).text</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>cursr.execute(&quot;select * from table(finance_analysis.out_stock_list_dt_range())&quot;)</expression-string>
         <language-id>Python</language-id>
@@ -373,20 +306,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Testing/Test.py" />
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Maruti_Demo.csv" />
-    <entry file="file://$PROJECT_DIR$/stock_hist_csv/MARUTI.NS2018-09-01 00:00:002019-03-16 00:00:00.csv" />
-    <entry file="file://$PROJECT_DIR$/stock_hist_csv/INFY.NS_2018-09-01 00:00:00_2019-03-16 00:00:00.csv" />
-    <entry file="file://$PROJECT_DIR$/stock_hist_csv/MARUTI.NS_20090901_20190316.csv" />
-    <entry file="file://$PROJECT_DIR$/Files_To_Process/Check.csv" />
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/TCS.NS_20180901_20190316.csv" />
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -409,47 +328,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="93" column="53" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/AXISBANK.NS_20170401_20190401.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
           <caret line="494" lean-forward="true" selection-start-line="494" selection-end-line="494" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Get_Prices.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="28" />
-          <folding>
-            <element signature="e#62#93#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -460,10 +342,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/database_table.sql">
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Findings.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/AXISBANK.NS_20180901_20190401.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="58" selection-start-line="58" selection-end-line="64" />
+        <state relative-caret-position="-1742" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/TCS.NS_20180901_20190401.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1742" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -477,20 +375,176 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+        <state relative-caret-position="373">
+          <caret line="1161" selection-start-line="1161" selection-end-line="1161" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/sessions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="369" selection-start-line="369" selection-end-line="369" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="809" selection-start-line="809" selection-end-line="809" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/structures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/_abcoll.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/database_table.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
-          <caret line="1161" selection-start-line="1161" selection-end-line="1161" />
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/abc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/data.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="100" selection-start-line="100" selection-end-line="100" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/UPL.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/ULTRACEMCO.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/ADANIPORTS.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10277" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/ADANIPOWER.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/ASIANPAINT.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/AUBANK.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/AXISBANK.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/BAJAJ-AUTO.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/BAJAJFINSV.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/To_Oracle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/abs.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/ADANIPORTS.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/ADANIPOWER.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/ASIANPAINT.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/AUBANK.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/AXISBANK.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/BAJAJ-AUTO.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/BAJAJFINSV.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/BAJFINANCE.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Download_csv/BHARTIARTL.NSE.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Get_Prices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="31" selection-end-line="50" />
+          <folding>
+            <element signature="e#62#77#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

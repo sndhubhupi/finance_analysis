@@ -14,8 +14,8 @@ def load_daily_price_data() :
 
 
 
-#load_daily_price_data()
-#To_Oracle.find_candle_stick_pattern()
+load_daily_price_data()
+To_Oracle.find_candle_stick_pattern()
 findings = From_Oracle.fetch_candlestick_findings()
 for x in findings:
     To_Telegram.sendTelegram(x,464308445)

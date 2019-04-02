@@ -1,150 +1,149 @@
 stock_ticker,stock_name,nifty50,sensex,other
-ADANIPORTS.NS,Adani Ports,1,0,0
-ASIANPAINT.NS,Asian Paints,1,0,0
-AXISBANK.NS,Axis Bank,1,0,0
-BAJAJ-AUTO.NS,Bajaj Auto,1,0,0
-BAJFINANCE.NS,Bajaj Finance,1,0,0
-BAJAJFINSV.NS,Bajaj Finserv,1,0,0
-BHARTIARTL.NS,Bharti Airtel,1,0,0
-INFRATEL.NS,Bharti Infratel,1,0,0
-BPCL.NS,BPCL,1,0,0
-CIPLA.BO,Cipla,1,0,0
-COALINDIA.NS,Coal India,1,0,0
-DRREDDY.NS,Dr Reddys Labs,1,0,0
-EICHERMOT.NS,Eicher Motors,1,0,0
-GAIL.NS,GAIL,1,0,0
-GRASIM.BO,Grasim,1,0,0
-HCLTECH.NS,HCL Tech,1,0,0
-HDFC.NS,HDFC,1,0,0
-HDFCBANK.NS,HDFC Bank,1,0,0
-HEROMOTOCO.NS,Hero Motocorp,1,0,0
-HINDALCO.NS,Hindalco,1,0,0
-HINDPETRO.NS,HPCL,1,0,0
-HINDUNILVR.NS,HUL,1,0,0
-ICICIBANK.NS,ICICI Bank,1,0,0
-IBULHSGFIN.NS,Indiabulls Hsg,1,0,0
-INDUSINDBK.NS,IndusInd Bank,1,0,0
-INFY.NS,Infosys,1,0,0
-IOC.NS,IOC,1,0,0
-ITC.NS,ITC,1,0,0
-JSWSTEEL.NS,JSW Steel,1,0,0
-KOTAKBANK.NS,Kotak Mahindra,1,0,0
-LT.NS,Larsen,1,0,0
-M&M.NS,M&M,1,0,0
-NTPC.NS,NTPC,1,0,0
-ONGC.NS,ONGC,1,0,0
-POWERGRID.NS,Power Grid Corp,1,0,0
-RELIANCE.NS,Reliance,1,0,0
-SBIN.NS,SBI,1,0,0
-SUNPHARMA.NS,Sun Pharma,1,0,0
-TATAMOTORS.NS,Tata Motors,1,0,0
-TATASTEEL.NS,Tata Steel,1,0,0
-TCS.NS,TCS,1,0,0
-TECHM.NS,Tech Mahindra,1,0,0
-TITAN.NS,Titan Company,1,0,0
-ULTRACEMCO.NS,UltraTechCement,1,0,0
-UPL.NS,UPL,1,0,0
-VEDL.NS,Vedanta,1,0,0
-WIPRO.NS,Wipro,1,0,0
-YESBANK.NS,Yes Bank,1,0,0
-ZEEL.NS,Zee Entertain,1,0,0
-AUBANK.NS,AUSmallFinanceBankLtd.,0,0,1
-ADANIPOWER.NS,AdaniPowerLtd.,0,0,1
-ABCAPITAL.NS,AdityaBirlaCapitalLtd.,0,0,1
-ABFRL.NS,AdityaBirlaFashionandRetailLtd.,0,0,1
-AJANTPHARM.NS,AjantaPharmaceuticalsLtd.,0,0,1
-ALKEM.NS,AlkemLaboratoriesLtd.,0,0,1
-AMARAJABAT.NS,AmaraRajaBatteriesLtd.,0,0,1
-APOLLOHOSP.NS,ApolloHospitalsEnterpriseLtd.,0,0,1
-APOLLOTYRE.NS,ApolloTyresLtd.,0,0,1
-BALKRISIND.NS,BalkrishnaIndustriesLtd.,0,0,1
-BANKINDIA.NS,BankofIndia,0,0,1
-BATAINDIA.NS,BataIndiaLtd.,0,0,1
-BERGEPAINT.NS,BergerPaintsIndiaLtd.,0,0,1
-BEL.NS,BharatElectronicsLtd.,0,0,1
-BHARATFORG.NS,BharatForgeLtd.,0,0,1
-BBTC.NS,BombayBurmahTradingCorporationLtd.,0,0,1
-CANBK.NS,CanaraBank,0,0,1
-CASTROLIND.NS,CastrolIndiaLtd.,0,0,1
-CHOLAFIN.NS,CholamandalamInvestmentandFinanceCompan,0,0,1
-COROMANDEL.NS,CoromandelInternationalLtd.,0,0,1
-CROMPTON.NS,CromptonGreavesConsumerElectricalsLtd.,0,0,1
-CUMMINSIND.NS,CumminsIndiaLtd.,0,0,1
-DHFL.NS,DewanHousingFinanceCorporationLtd.,0,0,1
-DBL.NS,DilipBuildconLtd.,0,0,1
-DISHTV.NS,DishTVIndiaLtd.,0,0,1
-EDELWEISS.NS,EdelweissFinancialServicesLtd.,0,0,1
-ENDURANCE.NS,EnduranceTechnologiesLtd.,0,0,1
-ENGINERSIN.NS,EngineersIndiaLtd.,0,0,1
-ESCORTS.NS,EscortsLtd.,0,0,1
-EXIDEIND.NS,ExideIndustriesLtd.,0,0,1
-FEDERALBNK.NS,FederalBankLtd.,0,0,1
-FCONSUMER.NS,FutureConsumerLtd.,0,0,1
-FRETAIL.NS,FutureRetailLtd.,0,0,1
-GMRINFRA.NS,GMRInfrastructureLtd.,0,0,1
-GSKCONS.NS,GlaxoSmithklineConsumerHealthcareLtd.,0,0,1
-GLENMARK.NS,GlenmarkPharmaceuticalsLtd.,0,0,1
-GODREJAGRO.NS,GodrejAgrovetLtd.,0,0,1
-GODREJIND.NS,GodrejIndustriesLtd.,0,0,1
-GRAPHITE.NS,GraphiteIndiaLtd.,0,0,1
-GRUH.NS,GruhFinanceLtd.,0,0,1
-GSPL.NS,GujaratStatePetronetLtd.,0,0,1
-HEG.NS,H.E.G.Ltd.,0,0,1
-HEXAWARE.NS,HexawareTechnologiesLtd.,0,0,1
-HUDCO.NS,Housing&UrbanDevelopmentCorporationLtd,0,0,1
-IDBI.NS,IDBIBankLtd.,0,0,1
-IDFCFIRSTB.NS,IDFCFirstBankLtd.,0,0,1
-IBVENTURES.NS,IndiabullsVenturesLtd.,0,0,1
-INDIANB.NS,IndianBank,0,0,1
-INDHOTEL.NS,IndianHotelsCo.Ltd.,0,0,1
-IGL.NS,IndraprasthaGasLtd.,0,0,1
-NAUKRI.NS,InfoEdge(India)Ltd.,0,0,1
-JSWENERGY.NS,JSWEnergyLtd.,0,0,1
-JINDALSTEL.NS,JindalSteel&PowerLtd.,0,0,1
-JUBLFOOD.NS,JubilantFoodworksLtd.,0,0,1
-JUBILANT.NS,JubilantLifeSciencesLtd.,0,0,1
-LTTS.NS,L&TTechnologyServicesLtd.,0,0,1
-LICHSGFIN.NS,LICHousingFinanceLtd.,0,0,1
-LTI.NS,Larsen&ToubroInfotechLtd.,0,0,1
-MGL.NS,MahanagarGasLtd.,0,0,1
-M&MFIN.NS,Mahindra&MahindraFinancialServicesLtd.,0,0,1
-MANAPPURAM.NS,ManappuramFinanceLtd.,0,0,1
-MRPL.NS,MangaloreRefinery&PetrochemicalsLtd.,0,0,1
-MFSL.NS,MaxFinancialServicesLtd.,0,0,1
-MINDTREE.NS,MindTreeLtd.,0,0,1
-MPHASIS.NS,MphasiSLtd.,0,0,1
-MUTHOOTFIN.NS,MuthootFinanceLtd.,0,0,1
-NATCOPHARM.NS,NATCOPharmaLtd.,0,0,1
-NBCC.NS,NBCC(India)Ltd.,0,0,1
-NATIONALUM.NS,NationalAluminiumCo.Ltd.,0,0,1
-OBEROIRLTY.NS,OberoiRealtyLtd.,0,0,1
-OIL.NS,OilIndiaLtd.,0,0,1
-PIIND.NS,PIIndustriesLtd.,0,0,1
-PNBHOUSING.NS,PNBHousingFinanceLtd.,0,0,1
-PFIZER.NS,PfizerLtd.,0,0,1
-PFC.NS,PowerFinanceCorporationLtd.,0,0,1
-PRESTIGE.NS,PrestigeEstatesProjectsLtd.,0,0,1
-PNB.NS,PunjabNationalBank,0,0,1
-QUESS.NS,QuessCorpLtd.,0,0,1
-RBLBANK.NS,RBLBankLtd.,0,0,1
-RECLTD.NS,RECLtd.,0,0,1
-RAJESHEXPO.NS,RajeshExportsLtd.,0,0,1
-RELCAPITAL.NS,RelianceCapitalLtd.,0,0,1
-RELINFRA.NS,RelianceInfrastructureLtd.,0,0,1
-RPOWER.NS,ReliancePowerLtd.,0,0,1
-SRF.NS,SRFLtd.,0,0,1
-STRTECH.NS,SterliteTechnologiesLtd.,0,0,1
-SPARC.NS,SunPharmaAdvancedResearchCompanyLtd.,0,0,1
-SUNTV.NS,SunTVNetworkLtd.,0,0,1
-SYNGENE.NS,SyngeneInternationalLtd.,0,0,1
-TVSMOTOR.NS,TVSMotorCompanyLtd.,0,0,1
-TATACHEM.NS,TataChemicalsLtd.,0,0,1
-TATAGLOBAL.NS,TataGlobalBeveragesLtd.,0,0,1
-TATAPOWER.NS,TataPowerCo.Ltd.,0,0,1
-RAMCOCEM.NS,TheRamcoCementsLtd.,0,0,1
-TORNTPHARM.NS,TorrentPharmaceuticalsLtd.,0,0,1
-TORNTPOWER.NS,TorrentPowerLtd.,0,0,1
-UNIONBANK.NS,UnionBankofIndia,0,0,1
-VGUARD.NS,V-GuardIndustriesLtd.,0,0,1
-VARROC.NS,VarrocEngineeringLtd.,0,0,1
-VOLTAS.NS,VoltasLtd.,0,0,1
+ADANIPORTS.NSE,Adani Ports,1,0,0
+ASIANPAINT.NSE,Asian Paints,1,0,0
+AXISBANK.NSE,Axis Bank,1,0,0
+BAJAJ-AUTO.NSE,Bajaj Auto,1,0,0
+BAJFINANCE.NSE,Bajaj Finance,1,0,0
+BAJAJFINSV.NSE,Bajaj Finserv,1,0,0
+BHARTIARTL.NSE,Bharti Airtel,1,0,0
+INFRATEL.NSE,Bharti Infratel,1,0,0
+BPCL.NSE,BPCL,1,0,0
+CIPLA.NSE,Cipla,1,0,0
+COALINDIA.NSE,Coal India,1,0,0
+DRREDDY.NSE,Dr Reddys Labs,1,0,0
+EICHERMOT.NSE,Eicher Motors,1,0,0
+GAIL.NSE,GAIL,1,0,0
+GRASIM.NSE,Grasim,1,0,0
+HCLTECH.NSE,HCL Tech,1,0,0
+HDFC.NSE,HDFC,1,0,0
+HDFCBANK.NSE,HDFC Bank,1,0,0
+HEROMOTOCO.NSE,Hero Motocorp,1,0,0
+HINDALCO.NSE,Hindalco,1,0,0
+HINDPETRO.NSE,HPCL,1,0,0
+HINDUNILVR.NSE,HUL,1,0,0
+ICICIBANK.NSE,ICICI Bank,1,0,0
+IBULHSGFIN.NSE,Indiabulls Hsg,1,0,0
+INDUSINDBK.NSE,IndusInd Bank,1,0,0
+INFY.NSE,Infosys,1,0,0
+IOC.NSE,IOC,1,0,0
+ITC.NSE,ITC,1,0,0
+JSWSTEEL.NSE,JSW Steel,1,0,0
+KOTAKBANK.NSE,Kotak Mahindra,1,0,0
+LT.NSE,Larsen,1,0,0
+NTPC.NSE,NTPC,1,0,0
+ONGC.NSE,ONGC,1,0,0
+POWERGRID.NSE,Power Grid Corp,1,0,0
+RELIANCE.NSE,Reliance,1,0,0
+SBIN.NSE,SBI,1,0,0
+SUNPHARMA.NSE,Sun Pharma,1,0,0
+TATAMOTORS.NSE,Tata Motors,1,0,0
+TATASTEEL.NSE,Tata Steel,1,0,0
+TCS.NSE,TCS,1,0,0
+TECHM.NSE,Tech Mahindra,1,0,0
+TITAN.NSE,Titan Company,1,0,0
+ULTRACEMCO.NSE,UltraTechCement,1,0,0
+UPL.NSE,UPL,1,0,0
+VEDL.NSE,Vedanta,1,0,0
+WIPRO.NSE,Wipro,1,0,0
+YESBANK.NSE,Yes Bank,1,0,0
+ZEEL.NSE,Zee Entertain,1,0,0
+AUBANK.NSE,AUSmallFinanceBankLtd.,0,0,1
+ADANIPOWER.NSE,AdaniPowerLtd.,0,0,1
+ABCAPITAL.NSE,AdityaBirlaCapitalLtd.,0,0,1
+ABFRL.NSE,AdityaBirlaFashionandRetailLtd.,0,0,1
+AJANTPHARM.NSE,AjantaPharmaceuticalsLtd.,0,0,1
+ALKEM.NSE,AlkemLaboratoriesLtd.,0,0,1
+AMARAJABAT.NSE,AmaraRajaBatteriesLtd.,0,0,1
+APOLLOHOSP.NSE,ApolloHospitalsEnterpriseLtd.,0,0,1
+APOLLOTYRE.NSE,ApolloTyresLtd.,0,0,1
+BALKRISIND.NSE,BalkrishnaIndustriesLtd.,0,0,1
+BANKINDIA.NSE,BankofIndia,0,0,1
+BATAINDIA.NSE,BataIndiaLtd.,0,0,1
+BERGEPAINT.NSE,BergerPaintsIndiaLtd.,0,0,1
+BEL.NSE,BharatElectronicsLtd.,0,0,1
+BHARATFORG.NSE,BharatForgeLtd.,0,0,1
+BBTC.NSE,BombayBurmahTradingCorporationLtd.,0,0,1
+CANBK.NSE,CanaraBank,0,0,1
+CASTROLIND.NSE,CastrolIndiaLtd.,0,0,1
+CHOLAFIN.NSE,CholamandalamInvestmentandFinanceCompan,0,0,1
+COROMANDEL.NSE,CoromandelInternationalLtd.,0,0,1
+CROMPTON.NSE,CromptonGreavesConsumerElectricalsLtd.,0,0,1
+CUMMINSIND.NSE,CumminsIndiaLtd.,0,0,1
+DHFL.NSE,DewanHousingFinanceCorporationLtd.,0,0,1
+DBL.NSE,DilipBuildconLtd.,0,0,1
+DISHTV.NSE,DishTVIndiaLtd.,0,0,1
+EDELWEISS.NSE,EdelweissFinancialServicesLtd.,0,0,1
+ENDURANCE.NSE,EnduranceTechnologiesLtd.,0,0,1
+ENGINERSIN.NSE,EngineersIndiaLtd.,0,0,1
+ESCORTS.NSE,EscortsLtd.,0,0,1
+EXIDEIND.NSE,ExideIndustriesLtd.,0,0,1
+FEDERALBNK.NSE,FederalBankLtd.,0,0,1
+FCONSUMER.NSE,FutureConsumerLtd.,0,0,1
+FRETAIL.NSE,FutureRetailLtd.,0,0,1
+GMRINFRA.NSE,GMRInfrastructureLtd.,0,0,1
+GSKCONS.NSE,GlaxoSmithklineConsumerHealthcareLtd.,0,0,1
+GLENMARK.NSE,GlenmarkPharmaceuticalsLtd.,0,0,1
+GODREJAGRO.NSE,GodrejAgrovetLtd.,0,0,1
+GODREJIND.NSE,GodrejIndustriesLtd.,0,0,1
+GRAPHITE.NSE,GraphiteIndiaLtd.,0,0,1
+GRUH.NSE,GruhFinanceLtd.,0,0,1
+GSPL.NSE,GujaratStatePetronetLtd.,0,0,1
+HEG.NSE,H.E.G.Ltd.,0,0,1
+HEXAWARE.NSE,HexawareTechnologiesLtd.,0,0,1
+HUDCO.NSE,Housing&UrbanDevelopmentCorporationLtd,0,0,1
+IDBI.NSE,IDBIBankLtd.,0,0,1
+IDFCFIRSTB.NSE,IDFCFirstBankLtd.,0,0,1
+IBVENTURES.NSE,IndiabullsVenturesLtd.,0,0,1
+INDIANB.NSE,IndianBank,0,0,1
+INDHOTEL.NSE,IndianHotelsCo.Ltd.,0,0,1
+IGL.NSE,IndraprasthaGasLtd.,0,0,1
+NAUKRI.NSE,InfoEdge(India)Ltd.,0,0,1
+JSWENERGY.NSE,JSWEnergyLtd.,0,0,1
+JINDALSTEL.NSE,JindalSteel&PowerLtd.,0,0,1
+JUBLFOOD.NSE,JubilantFoodworksLtd.,0,0,1
+JUBILANT.NSE,JubilantLifeSciencesLtd.,0,0,1
+LTTS.NSE,L&TTechnologyServicesLtd.,0,0,1
+LICHSGFIN.NSE,LICHousingFinanceLtd.,0,0,1
+LTI.NSE,Larsen&ToubroInfotechLtd.,0,0,1
+MGL.NSE,MahanagarGasLtd.,0,0,1
+M&MFIN.NSE,Mahindra&MahindraFinancialServicesLtd.,0,0,1
+MANAPPURAM.NSE,ManappuramFinanceLtd.,0,0,1
+MRPL.NSE,MangaloreRefinery&PetrochemicalsLtd.,0,0,1
+MFSL.NSE,MaxFinancialServicesLtd.,0,0,1
+MINDTREE.NSE,MindTreeLtd.,0,0,1
+MPHASIS.NSE,MphasiSLtd.,0,0,1
+MUTHOOTFIN.NSE,MuthootFinanceLtd.,0,0,1
+NATCOPHARM.NSE,NATCOPharmaLtd.,0,0,1
+NBCC.NSE,NBCC(India)Ltd.,0,0,1
+NATIONALUM.NSE,NationalAluminiumCo.Ltd.,0,0,1
+OBEROIRLTY.NSE,OberoiRealtyLtd.,0,0,1
+OIL.NSE,OilIndiaLtd.,0,0,1
+PIIND.NSE,PIIndustriesLtd.,0,0,1
+PNBHOUSING.NSE,PNBHousingFinanceLtd.,0,0,1
+PFIZER.NSE,PfizerLtd.,0,0,1
+PFC.NSE,PowerFinanceCorporationLtd.,0,0,1
+PRESTIGE.NSE,PrestigeEstatesProjectsLtd.,0,0,1
+PNB.NSE,PunjabNationalBank,0,0,1
+QUESS.NSE,QuessCorpLtd.,0,0,1
+RBLBANK.NSE,RBLBankLtd.,0,0,1
+RECLTD.NSE,RECLtd.,0,0,1
+RAJESHEXPO.NSE,RajeshExportsLtd.,0,0,1
+RELCAPITAL.NSE,RelianceCapitalLtd.,0,0,1
+RELINFRA.NSE,RelianceInfrastructureLtd.,0,0,1
+RPOWER.NSE,ReliancePowerLtd.,0,0,1
+SRF.NSE,SRFLtd.,0,0,1
+STRTECH.NSE,SterliteTechnologiesLtd.,0,0,1
+SPARC.NSE,SunPharmaAdvancedResearchCompanyLtd.,0,0,1
+SUNTV.NSE,SunTVNetworkLtd.,0,0,1
+SYNGENE.NSE,SyngeneInternationalLtd.,0,0,1
+TVSMOTOR.NSE,TVSMotorCompanyLtd.,0,0,1
+TATACHEM.NSE,TataChemicalsLtd.,0,0,1
+TATAGLOBAL.NSE,TataGlobalBeveragesLtd.,0,0,1
+TATAPOWER.NSE,TataPowerCo.Ltd.,0,0,1
+RAMCOCEM.NSE,TheRamcoCementsLtd.,0,0,1
+TORNTPHARM.NSE,TorrentPharmaceuticalsLtd.,0,0,1
+TORNTPOWER.NSE,TorrentPowerLtd.,0,0,1
+UNIONBANK.NSE,UnionBankofIndia,0,0,1
+VGUARD.NSE,V-GuardIndustriesLtd.,0,0,1
+VARROC.NSE,VarrocEngineeringLtd.,0,0,1
+VOLTAS.NSE,VoltasLtd.,0,0,1
