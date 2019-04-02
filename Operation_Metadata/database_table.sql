@@ -62,3 +62,4 @@ end;
 /
 
 select * from findings;
+https://analyticsprofile.com/algo-trading/free-historical-and-realtime-data-api-for-nse-stocks-and-indexes/
