@@ -3,6 +3,9 @@ import os as os
 import proj_constant_var as const
 import requests as request
 import csv
+import random
+import time
+import datetime
 
 default_files_dir = os.getcwd()+ const.folder_to_process_file
 download_folder = os.getcwd()+ const.downloaded_csv_folder
@@ -16,7 +19,8 @@ def load_stock_list():
         for lines in csv_reader:
             stock_list.append(lines['stock_ticker']);
 
-def create_url(stock_ticker, api_key):
+def create_url(stock_ticker):
+    api_key = random.choice(const.api_keys);
     url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + stock_ticker + '&apikey=' + api_key + '&datatype=csv'
     return url;
 
@@ -30,21 +34,14 @@ def load_data_from_url_to_csv(url,stock_ticker):
         os.remove(file_path)
     open(file_path, 'w').write(decoded_content);
 
-def run_load_for_stock_list(count):
-    for i in range(10):
-        for j in range(5):
-            if(count < len(stock_list)):
-                stock_ticker  = stock_list[count]
-                print "apikey " + const.api_keys[i] + " j value " + str(j) + " ticker " + stock_ticker;
-                url = create_url(stock_ticker,const.api_keys[i]);
-                load_data_from_url_to_csv(url,stock_ticker);
-                count = count + 1;
-            else:
-                break;
-    return count;
-
-load_stock_list()
-run_load_for_stock_list(0)
+def run_load_for_stock_list():
+    for stock_ticker in stock_list:
+        print 'Data Load Started for ' + stock_ticker + ' at ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        url = create_url(stock_ticker);
+        print url
+        load_data_from_url_to_csv(url, stock_ticker);
+        time.sleep(12)
+        print 'Data Load Finished for ' + stock_ticker + ' at ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 
 

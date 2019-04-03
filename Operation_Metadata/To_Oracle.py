@@ -2,17 +2,17 @@ import cx_Oracle
 import csv
 import os as os
 import proj_constant_var as const
-import Get_Prices
+import glob
 
-default_files_dir = os.getcwd()+ const.folder_to_process_file
-stock_list_file_name =  default_files_dir + const.stock_list_file
-file_exists = os.path.isfile(stock_list_file_name)
 conn_str = cx_Oracle.connect(const.database_connection)
 
 def insert_data_to_stock_list():
     print 'insert_data_to_stock_list started'
     to_oracle_cursr = conn_str.cursor()
     to_oracle_cursr.callproc('finance_analysis.truncate_table',['stg_stock_info_list'])
+    default_files_dir = os.getcwd() + const.folder_to_process_file
+    stock_list_file_name = default_files_dir + const.stock_list_file
+    file_exists = os.path.isfile(stock_list_file_name)
     if file_exists :
         with open(stock_list_file_name, "r") as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -32,37 +32,37 @@ def insert_data_to_stock_list():
     print 'insert_data_to_stock_list finshed'
 
 
-def load_stock_prize_to_db(stock_dt_range):
-    print 'load_stock_prize_to_db started'
+def load_stock_price_file_to_db(stock_ticker_csv):
+    stock_ticker_file = os.path.basename(stock_ticker_csv)
+    stock_ticker = stock_ticker_file.replace(const.csv_extention, '')
+    print 'load_stock_prize_to_db started for: ' + stock_ticker
     cur = conn_str.cursor()
     cur.callproc('finance_analysis.truncate_table',['stg_stock_price_data'])
-    for record in stock_dt_range:
-        stock_ticker =  record[0];
-        stock_from_dt = record[1];
-        stock_to_dt = record[2];
-        file_generated = Get_Prices.get_stock_price_dt_range(stock_ticker,stock_from_dt,stock_to_dt);
-        if file_generated == 'NA':
-            continue
-        else:
-            with open(file_generated, "r") as csv_file:
-                fields = ['Date','High','Low','Open','Close','Volume','Adj Close']
-                csv_reader = csv.DictReader(csv_file, fieldnames=fields, delimiter=',')
-                next(csv_reader)
-
-                for lines in csv_reader:
-                    try :
-                        cur.execute(
-                            "insert into stg_stock_price_data (stock_ticker,business_date,price_high,price_low,price_open,"
-                            "price_close,volume,adj_close) values (:1, to_date(:2,'YYYY-MM-DD'), :3, :4, :5, :6, :7, :8)",
-                                (stock_ticker, lines['Date'], lines['High'], lines['Low'],lines['Open'], lines['Close'], lines['Volume'], lines['Adj Close']))
-                    except :
-                         break
-            os.remove(file_generated)
+    with open(stock_ticker_csv, "r") as csv_file:
+        fields = ['timestamp','open','high','low','close','volume']
+        csv_reader = csv.DictReader(csv_file, fieldnames=fields, delimiter=',')
+        next(csv_reader)
+        for lines in csv_reader:
+            try :
+                cur.execute(
+                    "insert into stg_stock_price_data (stock_ticker,business_date,price_high,price_low,price_open,"
+                    "price_close,volume) values (:1, to_date(:2,'YYYY-MM-DD'), :3, :4, :5, :6, :7)",
+                                (stock_ticker, lines['timestamp'], lines['high'], lines['low'],lines['open'], lines['close'], lines['volume']))
+            except :
+                break
+    #os.remove(stock_ticker_csv)
     cur.callproc('finance_analysis.load_price_data_from_stg')
     cur.close()
     conn_str.commit()
     #conn_str.close()
-    print 'load_stock_prize_to_db finshed'
+    print 'load_stock_prize_to_db finshed for: ' + stock_ticker
+
+def load_all_download_price_to_db():
+    get_all_file_list = glob.glob("/Users/sandhu/PycharmProjects/Finance_Analysis/Operation_Metadata/Download_csv/*.csv")
+    print get_all_file_list
+    for stock_ticker_csv in get_all_file_list:
+        print 'Calling Function load_stock_price_file_to_db for :' + stock_ticker_csv
+        load_stock_price_file_to_db(stock_ticker_csv)
 
 def calc_moving_average():
     cur = conn_str.cursor()
@@ -105,3 +105,4 @@ def find_candle_stick_pattern():
     conn_str.commit()
     # conn_str.close()
     print 'find_candle_stick_pattern calculation finished'
+

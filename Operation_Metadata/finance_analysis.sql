@@ -122,10 +122,11 @@ as
     procedure load_price_data_from_stg
     as
     begin
-        insert into stock_price_data
-            select * from stg_stock_price_data stg
-                where not exists (select 1 from stock_price_data spd where spd.stock_ticker = stg.stock_ticker
+        delete from stock_price_data spd
+         where exists (select 1 from stock_price_data stg where spd.stock_ticker = stg.stock_ticker
                                                                       and spd.business_date = stg.business_date);
+        insert into stock_price_data
+            select * from stg_stock_price_data;
         commit;
     end load_price_data_from_stg;
 
@@ -282,7 +283,7 @@ as
           -- check 3 :- find day 1 open about equal to day 2 close
 
          v_smoothing_value := v_price_open * const_smoothing_factor;
-         check_equality := v_smoothing_value/2 >= abs(v_price_open - v_price_close_2);
+         check_equality := v_smoothing_value/3 >= abs(v_price_open - v_price_close_2);
          if check_equality then
             v_finding_counter := v_finding_counter + 1;
             v_full_discription := v_full_discription || ' $$ 3. TWIZZER BOTTOM FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
@@ -342,7 +343,7 @@ as
          -- check 3 :- find day 1 open about equal to day 2 close
 
          v_smoothing_value := v_price_open * const_smoothing_factor;
-         check_equality := v_smoothing_value/2 >= abs(v_price_open - v_price_close_2);
+         check_equality := v_smoothing_value/3 >= abs(v_price_open - v_price_close_2);
          if check_equality then
             v_finding_counter := v_finding_counter + 1;
             v_full_discription := v_full_discription || ' $$ 3. TWIZZER TOP FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
@@ -786,6 +787,7 @@ as
         v_price_open_3      number;
         v_price_close_3       number;
         check_equality      boolean;
+        v_doji_value        number;
         v_day_3_date        date;
     begin
           v_full_discription := '';
@@ -827,16 +829,22 @@ as
             v_full_discription := v_full_discription || ' $$ 3. Last/3rd Bullish candle formed ';
           end if;
 
+          if v_price_open_2 > v_price_close_2 then
+            v_doji_value := v_price_close_2;
+          else
+            v_doji_value :=v_price_open_2;
+          end if;
+
         -- check 4 : second candle must be gap up, open of middle candle must be greater than close of last/3rd day
-         if v_price_open_2  > v_price_close_3 then
+         if v_doji_value  > v_price_close_3 then
             v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 4. Second Candle Gap Up  , ' || 'Open Price of middle candle : ' || round(v_price_open_2,3) || ' Previous Day Close Price : ' ||  round(v_price_close_3,3);
+            v_full_discription := v_full_discription || ' $$ 4. Second Candle Gap Up  , ' || 'Price of middle candle : ' || round(v_doji_value,3) || ' Previous Day Close Price : ' ||  round(v_price_close_3,3);
          end if;
 
         --check 5 : Latest candle must be gap down, Open of latest day must be lower than close of middle candle
-         if v_price_open  < v_price_close_2 then
+         if v_price_open  < v_doji_value then
             v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 5. Latest Candle Gap down  , ' || 'Open Price : ' || round(v_price_open,3) || ' Previous Day Close Price : ' ||  round(v_price_close_2,3);
+            v_full_discription := v_full_discription || ' $$ 5. Latest Candle Gap down  , ' || 'Open Price : ' || round(v_price_open,3) || ' Previous Day Price : ' ||  round(v_doji_value,3);
          end if;
 
         -- check 6 : Uptrend
@@ -943,7 +951,8 @@ as
         v_price_high		number;
         v_price_low         number;
         v_price_open_3      number;
-        v_price_close_3       number;
+        v_price_close_3     number;
+        v_doji_value        number;
         check_equality      boolean;
         v_day_3_date        date;
     begin
@@ -986,16 +995,22 @@ as
             v_full_discription := v_full_discription || ' $$ 3. Last/3rd Bearish candle formed ';
           end if;
 
+          if v_price_open_2 > v_price_close_2 then
+            v_doji_value := v_price_open_2;
+          else
+            v_doji_value :=v_price_close_2;
+          end if;
+
         -- check 4 : Latest candle must be gap up, open of lastest candle must be greater than close of previous day
-         if v_price_open  > v_price_close_2 then
+         if v_price_open  > v_doji_value then
             v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 4. Latest Candle Gap Up  , ' || 'Open Price of Latest candle : ' || round(v_price_open,3) || ' Previous Day Close Price : ' ||  round(v_price_close_2,3);
+            v_full_discription := v_full_discription || ' $$ 4. Latest Candle Gap Up  , ' || 'Open Price of Latest candle : ' || round(v_price_open,3) || ' Previous Day Price : ' ||  round(v_doji_value,3);
          end if;
 
         --check 5 : Second/Doji candle must be gap down, Open of Second/Doji day must be lower than close of last/3rd candle
-         if v_price_open_2  < v_price_close_3 then
+         if v_doji_value  < v_price_close_3 then
             v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 5. Second/Doji Candle Gap down  , ' || 'Open Price : ' || round(v_price_open_2,3) || ' Previous Day Close Price : ' ||  round(v_price_close_3,3);
+            v_full_discription := v_full_discription || ' $$ 5. Second/Doji Candle Gap down  , ' || 'Price : ' || round(v_doji_value,3) || ' Previous Day Close Price : ' ||  round(v_price_close_3,3);
          end if;
 
         -- check 6 : Downtrend
