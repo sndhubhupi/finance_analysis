@@ -65,24 +65,19 @@ as
 
 
     function out_stock_list
-        return tab_stock_list
+        return tab_stock_list pipelined
     is
         cursor stock_list is
-            select stock_ticker,
-                   trunc(nvl(price_latest_dt,sysdate -1)) as price_latest_dt
-        from stock_info_list;
+            select stock_ticker
+                from stock_info_list where trunc(price_latest_dt) <>  trunc(sysdate) or price_latest_dt is null;
     begin
         for rec in stock_list
             loop
-                if trunc(rec.price_latest_dt) = trunc(sysdate)
-                then
-                    null;
-                else
-                    pipe row (rec.stock_ticker);
-                end if;
+                    pipe row (rec);
+
             end loop;
             return;
-    end out_stock_list_dt_range;
+    end out_stock_list;
 
     function out_candle_stick_pattern
         return tab_findings pipelined
@@ -118,7 +113,7 @@ as
     as
     begin
         delete from stock_price_data spd
-         where exists (select 1 from stock_price_data stg where spd.stock_ticker = stg.stock_ticker
+         where exists (select 1 from stg_stock_price_data stg where spd.stock_ticker = stg.stock_ticker
                                                                       and spd.business_date = stg.business_date);
         insert into stock_price_data
             select * from stg_stock_price_data;
@@ -141,10 +136,10 @@ as
         update stock_price_data set dma_200 =
             (select dma_200 from
                 (select stock_ticker,business_date,
-                    avg(price_close) over (partition by stock_ticker order by business_date rows 199 preceding ) as dma_200,
-                    count(price_close) over (partition by stock_ticker order by business_date rows 199 preceding ) as cnt
+                    avg(price_close) over (partition by stock_ticker order by business_date rows 200 preceding ) as dma_200,
+                    count(price_close) over (partition by stock_ticker order by business_date rows 200 preceding ) as cnt
                   from stock_price_data ) tab
-        where tab.cnt > 199
+        where tab.cnt > 200
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
@@ -156,10 +151,10 @@ as
         update stock_price_data set dma_50 =
             (select dma_50 from
                 (select stock_ticker,business_date,
-                    avg(price_close) over (partition by stock_ticker order by business_date rows 49 preceding ) as dma_50,
-                    count(price_close) over (partition by stock_ticker order by business_date rows 49 preceding ) as cnt
+                    avg(price_close) over (partition by stock_ticker order by business_date rows 50 preceding ) as dma_50,
+                    count(price_close) over (partition by stock_ticker order by business_date rows 50 preceding ) as cnt
                   from stock_price_data ) tab
-        where tab.cnt > 49
+        where tab.cnt > 50
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
@@ -171,10 +166,10 @@ as
         update stock_price_data set dma_10 =
             (select dma_10 from
                 (select stock_ticker,business_date,
-                    avg(price_close) over (partition by stock_ticker order by business_date rows 9 preceding ) as dma_10,
-                    count(price_close) over (partition by stock_ticker order by business_date rows 9 preceding ) as cnt
+                    avg(price_close) over (partition by stock_ticker order by business_date rows 10 preceding ) as dma_10,
+                    count(price_close) over (partition by stock_ticker order by business_date rows 10 preceding ) as cnt
                   from stock_price_data ) tab
-        where tab.cnt > 9
+        where tab.cnt > 10
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;
@@ -186,10 +181,10 @@ as
         update stock_price_data set dma_8 =
             (select dma_8 from
                 (select stock_ticker,business_date,
-                    avg(price_close) over (partition by stock_ticker order by business_date rows 7 preceding ) as dma_8,
-                    count(price_close) over (partition by stock_ticker order by business_date rows 7 preceding ) as cnt
+                    avg(price_close) over (partition by stock_ticker order by business_date rows 8 preceding ) as dma_8,
+                    count(price_close) over (partition by stock_ticker order by business_date rows 8 preceding ) as cnt
                   from stock_price_data ) tab
-        where tab.cnt > 7
+        where tab.cnt > 8
         and tab.stock_ticker = stock_price_data.stock_ticker
         and trunc(tab.business_date) = trunc(stock_price_data.business_date));
         commit;

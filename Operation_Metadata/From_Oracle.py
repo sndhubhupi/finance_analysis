@@ -7,7 +7,7 @@ default_files_dir = os.getcwd()+ const.folder_to_process_file
 conn_str = cx_Oracle.connect(const.database_connection)
 
 def fetch_stock_list():
-    print '-- Fetching stock list with date range --'
+    print '-- Fetching stock list to load data --'
     from_oracle_cursr = conn_str.cursor();
     from_oracle_cursr.execute("select * from table(finance_analysis.out_stock_list())");
     stock_list = from_oracle_cursr.fetchall();

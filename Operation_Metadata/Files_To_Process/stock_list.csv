@@ -1,4 +1,6 @@
 stock_ticker,stock_name,nifty50,sensex,other
+^NSEI,Nifty 50,0,0,1
+^NSEBANK,Nifty Bank,0,0,1
 ADANIPORTS.NSE,Adani Ports,1,0,0
 ASIANPAINT.NSE,Asian Paints,1,0,0
 AXISBANK.NSE,Axis Bank,1,0,0
@@ -106,7 +108,6 @@ LTTS.NSE,L&TTechnologyServicesLtd.,0,0,1
 LICHSGFIN.NSE,LICHousingFinanceLtd.,0,0,1
 LTI.NSE,Larsen&ToubroInfotechLtd.,0,0,1
 MGL.NSE,MahanagarGasLtd.,0,0,1
-M&MFIN.NSE,Mahindra&MahindraFinancialServicesLtd.,0,0,1
 MANAPPURAM.NSE,ManappuramFinanceLtd.,0,0,1
 MRPL.NSE,MangaloreRefinery&PetrochemicalsLtd.,0,0,1
 MFSL.NSE,MaxFinancialServicesLtd.,0,0,1

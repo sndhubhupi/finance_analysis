@@ -50,7 +50,7 @@ def load_stock_price_file_to_db(stock_ticker_csv):
                                 (stock_ticker, lines['timestamp'], lines['high'], lines['low'],lines['open'], lines['close'], lines['volume']))
             except :
                 break
-    #os.remove(stock_ticker_csv)
+    os.remove(stock_ticker_csv)
     cur.callproc('finance_analysis.load_price_data_from_stg')
     cur.close()
     conn_str.commit()
