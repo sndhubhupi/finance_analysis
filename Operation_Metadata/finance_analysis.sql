@@ -1,18 +1,16 @@
 create or replace package finance_analysis 
 as
-    type t_stock_dt_range is record ( 
-        stock_ticker        varchar2(20),
-        price_earliest_dt   date,
-        price_latest_dt     date);
+    type t_stock_list is record ( 
+        stock_ticker        varchar2(20));
     type t_findings is record ( 
         stock_ticker        varchar2(20),
         business_date       date,
         finding_type        varchar2(50),
         full_discription    varchar2(1000));        
-    type tab_stock_dt_range is table of t_stock_dt_range;
+    type tab_stock_list is table of t_stock_list;
     type tab_findings is table of t_findings;
     
-    function out_stock_list_dt_range return tab_stock_dt_range pipelined;
+    function out_stock_list return tab_stock_list pipelined;
     function out_candle_stick_pattern return  tab_findings pipelined;
     
     procedure truncate_table (in_table_name     varchar2);
@@ -66,24 +64,21 @@ as
    v_red_percentage         number;
 
 
-    function out_stock_list_dt_range
-        return tab_stock_dt_range pipelined
+    function out_stock_list
+        return tab_stock_list
     is
         cursor stock_list is
             select stock_ticker,
-                   trunc(nvl(price_latest_dt,sysdate-731)) as price_earliest_dt,
                    trunc(nvl(price_latest_dt,sysdate -1)) as price_latest_dt
         from stock_info_list;
     begin
         for rec in stock_list
             loop
-                if trunc(rec.price_latest_dt) = trunc(sysdate) --and rec.price_earliest_dt between sysdate and sysdate - 731
+                if trunc(rec.price_latest_dt) = trunc(sysdate)
                 then
                     null;
                 else
-                    rec.price_earliest_dt := trunc(rec.price_earliest_dt) +1;
-                    rec.price_latest_dt := trunc(sysdate);
-                    pipe row (rec);
+                    pipe row (rec.stock_ticker);
                 end if;
             end loop;
             return;
