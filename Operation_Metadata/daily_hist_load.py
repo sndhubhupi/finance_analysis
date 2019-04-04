@@ -3,6 +3,15 @@ import From_Oracle
 import To_Telegram
 import Get_Prices
 import pandas as pd
+import proj_constant_var as const
+import datetime
+
+def send_text_to_telegram(findings):
+    print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') +" : Sending Text to telegram Started" 
+    for id in const.telegram_id_list:
+        for record in findings:
+            To_Telegram.sendTelegram(record,id)
+    print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') +" : Sending Text to telegram Finished" 
 
 def load_daily_price_data() :
     To_Oracle.insert_data_to_stock_list()
@@ -13,13 +22,10 @@ def load_daily_price_data() :
     To_Oracle.calc_moving_average()
     To_Oracle.find_candle_stick_pattern()
     findings = From_Oracle.fetch_candlestick_findings()
-    for x in findings:
-        To_Telegram.sendTelegram(x,464308445)
-        To_Telegram.sendTelegram(x, 506426930)
+    send_text_to_telegram(findings)
     labels = ['Stock Ticker', 'Date', 'Finding_Type', 'Discription']
     df = pd.DataFrame.from_records(findings, columns=labels)
     df.to_csv('Findings.csv')
 
 
 load_daily_price_data()
-
