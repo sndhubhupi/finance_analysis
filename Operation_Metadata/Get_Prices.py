@@ -11,13 +11,13 @@ default_files_dir = os.getcwd()+ const.folder_to_process_file
 download_folder = os.getcwd()+ const.downloaded_csv_folder
 stock_list_file_name =  default_files_dir + const.stock_list_file
 file_exists = os.path.isfile(stock_list_file_name)
-stock_list = [];
+#stock_list = [];
 
-def load_stock_list():
-    with open(stock_list_file_name, "r") as csv_file:
-        csv_reader = csv.DictReader(csv_file, delimiter=',')
-        for lines in csv_reader:
-            stock_list.append(lines['stock_ticker']);
+#def load_stock_list():
+#    with open(stock_list_file_name, "r") as csv_file:
+#        csv_reader = csv.DictReader(csv_file, delimiter=',')
+#        for lines in csv_reader:
+#            stock_list.append(lines['stock_ticker']);
 
 def create_url(stock_ticker):
     api_key = random.choice(const.api_keys);
@@ -34,7 +34,7 @@ def load_data_from_url_to_csv(url,stock_ticker):
         os.remove(file_path)
     open(file_path, 'w').write(decoded_content);
 
-def run_load_for_stock_list():
+def run_load_for_stock_list(stock_list):
     for stock_ticker in stock_list:
         print 'Data Load Started for ' + stock_ticker + ' at ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         url = create_url(stock_ticker);
