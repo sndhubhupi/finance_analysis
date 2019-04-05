@@ -35,17 +35,16 @@ def load_data_from_url_to_csv(url,stock_ticker):
     open(file_path, 'w').write(decoded_content);
 
 def run_load_for_stock_list(stock_list):
-    print stock_list
     for stock_ticker  in stock_list:
         stock_ticker = str(stock_ticker)
         stock = stock_ticker.replace("('","");
         stock = stock.replace("',)","");
-        print 'Data Load Started for ' + stock + ' at ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Data Load Started for ' + stock + '
         url = create_url(stock);
-        print url
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + url
         load_data_from_url_to_csv(url, stock);
         time.sleep(12)
-        print 'Data Load Finished for ' + stock  + ' at ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Data Load Finished for ' + stock 
 
 
 
