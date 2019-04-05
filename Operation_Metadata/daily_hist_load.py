@@ -6,6 +6,9 @@ import pandas as pd
 import proj_constant_var as const
 import datetime
 
+finding_folder = os.getcwd()+ const.findings_folder
+findings_file = finding_folder + const.finding_file +datetime.datetime.now().strftime('%Y_%m_%d) + const.csv_extension
+
 def send_text_to_telegram(findings):
     print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') +" : Sending Text to telegram Started"
     for id in const.telegram_id_list:
@@ -24,7 +27,7 @@ def load_daily_price_data() :
     findings = From_Oracle.fetch_candlestick_findings()
     #send_text_to_telegram(findings)
     labels = ['Stock Ticker', 'Date', 'Finding_Type', 'Discription']
-    df = pd.DataFrame.from_records(findings, columns=labels)
+    df = pd.DataFrame.from_records(findings_file, columns=labels)
     df.to_csv('Findings.csv')
 
 
