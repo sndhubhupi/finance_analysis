@@ -2,6 +2,7 @@ import telegram
 import requests
 import time
 import datetime
+import proj_constant_var as const
 
 def sendTelegram(totalResponse, chatId):
     try:

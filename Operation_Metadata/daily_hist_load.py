@@ -5,9 +5,10 @@ import Get_Prices
 import pandas as pd
 import proj_constant_var as const
 import datetime
+import os
 
 finding_folder = os.getcwd()+ const.findings_folder
-findings_file = finding_folder + const.finding_file +datetime.datetime.now().strftime('%Y_%m_%d) + const.csv_extension
+findings_file = finding_folder + const.finding_file +'_' +datetime.datetime.now().strftime('%Y%m%d') + const.csv_extension
 
 def load_daily_price_data() :
     To_Oracle.insert_data_to_stock_list()
@@ -20,8 +21,8 @@ def load_daily_price_data() :
     findings = From_Oracle.fetch_candlestick_findings()
     To_Telegram.send_text_to_telegram(findings)
     labels = ['Stock Ticker', 'Date', 'Finding_Type', 'Discription']
-    df = pd.DataFrame.from_records(findings_file, columns=labels)
-    df.to_csv('Findings.csv')
+    df = pd.DataFrame.from_records(findings, columns=labels)
+    df.to_csv(findings_file)
 
 
 load_daily_price_data()

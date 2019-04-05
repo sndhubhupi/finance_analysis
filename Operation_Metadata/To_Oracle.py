@@ -68,19 +68,19 @@ def calc_moving_average():
     cur = conn_str.cursor()
     
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 200 calculation started '
-    cur.callproc('calculation.calc_moving_average_200')
+    cur.callproc('calculations.calc_moving_average_200')
     print   datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
 
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 50 calculation started'
-    cur.callproc('calculation.calc_moving_average_50')
+    cur.callproc('calculations.calc_moving_average_50')
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
 
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 10 calculation started'
-    cur.callproc('calculation.calc_moving_average_10')
+    cur.callproc('calculations.calc_moving_average_10')
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
 
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 8 calculation started'
-    cur.callproc('calculation.calc_moving_average_8')
+    cur.callproc('calculations.calc_moving_average_8')
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
     
     cur.close()
@@ -90,7 +90,7 @@ def calc_moving_average():
 def update_earliest_latest_dt():
         print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' update_earliest_latest_dt calculation started'
         cur = conn_str.cursor()
-        cur.callproc('calculation.update_earliest_latest_dt')
+        cur.callproc('calculations.update_earliest_latest_dt')
         cur.close()
         conn_str.commit()
         # conn_str.close()

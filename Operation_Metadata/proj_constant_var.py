@@ -1,5 +1,6 @@
 folder_to_process_file = '/Files_To_Process/' ;
-findings_folder = 'Findings'
+findings_folder = '/Finding/'
+finding_file = 'Finding'
 downloaded_csv_folder = '/Download_csv/';
 database_connection = 'db_hist_data/db_hist_data@localhost/orcl' ;
 csv_extention = '.csv'

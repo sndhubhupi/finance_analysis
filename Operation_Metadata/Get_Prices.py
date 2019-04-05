@@ -39,7 +39,7 @@ def run_load_for_stock_list(stock_list):
         stock_ticker = str(stock_ticker)
         stock = stock_ticker.replace("('","");
         stock = stock.replace("',)","");
-        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Data Load Started for ' + stock + '
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Data Load Started for ' + stock
         url = create_url(stock);
         print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + url
         load_data_from_url_to_csv(url, stock);
