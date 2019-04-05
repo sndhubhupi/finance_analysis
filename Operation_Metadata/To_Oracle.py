@@ -7,7 +7,7 @@ import glob
 conn_str = cx_Oracle.connect(const.database_connection)
 
 def insert_data_to_stock_list():
-    print 'insert_data_to_stock_list started'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' insert_data_to_stock_list started'
     to_oracle_cursr = conn_str.cursor()
     to_oracle_cursr.callproc('finance_analysis.truncate_table',['stg_stock_info_list'])
     default_files_dir = os.getcwd() + const.folder_to_process_file
@@ -22,20 +22,20 @@ def insert_data_to_stock_list():
                         "insert into stg_stock_info_list (stock_ticker, stock_name, nifty50, sensex, other) values (:1, :2, :3, :4, :5)",
                         (lines['stock_ticker'], lines['stock_name'], lines['nifty50'], lines['sensex'], lines['other']))
                 except:
-                    print("Something went wrong when writing to the database")
+                    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " Something went wrong when writing to the database"
     else:
-        print "File not exists : " + stock_list_file_name
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " File not exists : " + stock_list_file_name
     to_oracle_cursr.callproc('finance_analysis.load_stock_list_from_stg')
     to_oracle_cursr.close()
     conn_str.commit()
     #conn_str.close()
-    print 'insert_data_to_stock_list finshed'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' insert_data_to_stock_list finshed'
 
 
 def load_stock_price_file_to_db(stock_ticker_csv):
     stock_ticker_file = os.path.basename(stock_ticker_csv)
     stock_ticker = stock_ticker_file.replace(const.csv_extention, '')
-    print 'load_stock_prize_to_db started for: ' + stock_ticker
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' load_stock_prize_to_db started for: ' + stock_ticker
     cur = conn_str.cursor()
     cur.callproc('finance_analysis.truncate_table',['stg_stock_price_data'])
     with open(stock_ticker_csv, "r") as csv_file:
@@ -55,54 +55,53 @@ def load_stock_price_file_to_db(stock_ticker_csv):
     cur.close()
     conn_str.commit()
     #conn_str.close()
-    print 'load_stock_prize_to_db finshed for: ' + stock_ticker
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' load_stock_prize_to_db finshed for: ' + stock_ticker
 
 def load_all_download_price_to_db():
     get_all_file_list = glob.glob("/Users/sandhu/PycharmProjects/Finance_Analysis/Operation_Metadata/Download_csv/*.csv")
-    print get_all_file_list
     for stock_ticker_csv in get_all_file_list:
-        print 'Calling Function load_stock_price_file_to_db for :' + stock_ticker_csv
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Calling Function load_stock_price_file_to_db for :' + stock_ticker_csv
         load_stock_price_file_to_db(stock_ticker_csv)
 
 def calc_moving_average():
     cur = conn_str.cursor()
     
-    print 'Moving Average 200 calculation started '
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 200 calculation started '
     cur.callproc('calculation.calc_moving_average_200')
-    print 'Moving Average calculation finished'
+    print   datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
 
-    print 'Moving Average 50 calculation started'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 50 calculation started'
     cur.callproc('calculation.calc_moving_average_50')
-    print 'Moving Average calculation finished'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
 
-    print 'Moving Average 10 calculation started'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 10 calculation started'
     cur.callproc('calculation.calc_moving_average_10')
-    print 'Moving Average calculation finished'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
 
-    print 'Moving Average 8 calculation started'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average 8 calculation started'
     cur.callproc('calculation.calc_moving_average_8')
-    print 'Moving Average calculation finished'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Moving Average calculation finished'
     
     cur.close()
     conn_str.commit()
     #conn_str.close()
 
 def update_earliest_latest_dt():
-        print 'update_earliest_latest_dt calculation started'
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' update_earliest_latest_dt calculation started'
         cur = conn_str.cursor()
         cur.callproc('calculation.update_earliest_latest_dt')
         cur.close()
         conn_str.commit()
         # conn_str.close()
-        print 'update_earliest_latest_dt calculation finished'
+        print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' update_earliest_latest_dt calculation finished'
 
 
 def find_candle_stick_pattern():
-    print 'find_candle_stick_pattern calculation started'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' find_candle_stick_pattern calculation started'
     cur = conn_str.cursor()
     cur.callproc('finance_analysis.find_candle_stick_pattern')
     cur.close()
     conn_str.commit()
     # conn_str.close()
-    print 'find_candle_stick_pattern calculation finished'
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' find_candle_stick_pattern calculation finished'
 
