@@ -68,19 +68,19 @@ def calc_moving_average():
     cur = conn_str.cursor()
     
     print 'Moving Average 200 calculation started '
-    cur.callproc('finance_analysis.calc_moving_average_200')
+    cur.callproc('calculation.calc_moving_average_200')
     print 'Moving Average calculation finished'
 
     print 'Moving Average 50 calculation started'
-    cur.callproc('finance_analysis.calc_moving_average_50')
+    cur.callproc('calculation.calc_moving_average_50')
     print 'Moving Average calculation finished'
 
     print 'Moving Average 10 calculation started'
-    cur.callproc('finance_analysis.calc_moving_average_10')
+    cur.callproc('calculation.calc_moving_average_10')
     print 'Moving Average calculation finished'
 
     print 'Moving Average 8 calculation started'
-    cur.callproc('finance_analysis.calc_moving_average_8')
+    cur.callproc('calculation.calc_moving_average_8')
     print 'Moving Average calculation finished'
     
     cur.close()
@@ -90,7 +90,7 @@ def calc_moving_average():
 def update_earliest_latest_dt():
         print 'update_earliest_latest_dt calculation started'
         cur = conn_str.cursor()
-        cur.callproc('finance_analysis.update_earliest_latest_dt')
+        cur.callproc('calculation.update_earliest_latest_dt')
         cur.close()
         conn_str.commit()
         # conn_str.close()
