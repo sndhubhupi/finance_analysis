@@ -87,6 +87,16 @@ def calc_moving_average():
     conn_str.commit()
     #conn_str.close()
 
+
+def calc_pivot_demark():
+    cur = conn_str.cursor()
+
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Pivot and Demark Pivot calculation started '
+    cur.callproc('calculations.calc_pivot_points')
+    print   datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Pivot and Demark Pivot calculation finished'
+    cur.close()
+    conn_str.commit()
+
 def update_earliest_latest_dt():
         print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' update_earliest_latest_dt calculation started'
         cur = conn_str.cursor()

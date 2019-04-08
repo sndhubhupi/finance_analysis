@@ -47,6 +47,20 @@ create table findings
 );
 
 
+create table stock_pivot_data
+(   stock_ticker        varchar2(20),
+    monthly_pivot       number,
+    monthly_s1          number,
+    monthly_s2          number,
+    monthly_r1          number,
+    monthly_r2          number,
+    demark_high         number,
+    demark_low          number,
+    constraint stock_pivot_data_pk primary key (stock_ticker)
+);
+
+
+
 create table stg_stock_price_data as select * from stock_price_data;
 select * from stg_stock_price_data;
 

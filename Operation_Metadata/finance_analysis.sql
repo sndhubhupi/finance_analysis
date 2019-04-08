@@ -18,6 +18,7 @@ as
     procedure load_stock_list_from_stg;
 
     procedure find_candle_stick_pattern;
+
 end finance_analysis;
 /
 

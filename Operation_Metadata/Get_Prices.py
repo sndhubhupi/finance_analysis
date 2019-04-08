@@ -43,7 +43,7 @@ def run_load_for_stock_list(stock_list):
         url = create_url(stock);
         print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + url
         load_data_from_url_to_csv(url, stock);
-        time.sleep(12)
+        time.sleep(11)
         print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Data Load Finished for ' + stock 
 
 

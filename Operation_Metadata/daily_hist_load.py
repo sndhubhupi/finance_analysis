@@ -17,12 +17,14 @@ def load_daily_price_data() :
     To_Oracle.load_all_download_price_to_db()
     To_Oracle.update_earliest_latest_dt()
     To_Oracle.calc_moving_average()
+    To_Oracle.calc_pivot_demark()
     To_Oracle.find_candle_stick_pattern()
     findings = From_Oracle.fetch_candlestick_findings()
     To_Telegram.send_text_to_telegram(findings)
     labels = ['Stock Ticker', 'Date', 'Finding_Type', 'Discription']
     df = pd.DataFrame.from_records(findings, columns=labels)
     df.to_csv(findings_file)
+
 
 
 load_daily_price_data()
