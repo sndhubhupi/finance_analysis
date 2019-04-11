@@ -1,0 +1,19 @@
+,Stock Ticker,Date,Finding_Type,Discription
+0,ABFRL.NSE,2019-04-10,MORNING_STAR," $$ 1. Lastest Bullish candle formed $$ 2. Middle Candle Doji Formation , Open Price : 215 Close Price : 215.55 $$ 3. Last/3rd Bearish candle formed  $$ 4. Latest Candle Gap Up  , Open Price of Latest candle : 221.65 Previous Day Price : 215.55 $$ 5. Second/Doji Candle Gap down  , Price : 215.55 Previous Day Close Price : 215.95 $$ 6. Downtrend confirmed ."
+1,AMARAJABAT.NSE,2019-04-10,BULLISH_ENGULFING," $$ 1. Bullish candle formed $$ 2. Bearish candle formed $$ 3. Gap Down  , Open Price : 670 Previous Day Close Price : 676.7 $$ 4. Gap Down  Rejected , Close Price : 684.55 Previous Day Open Price : 677.2 $$ 5. BULLISH ENGLUFING PATTERN FOUND ,  $$ 6. Downtrend confirmed"
+2,APOLLOTYRE.NSE,2019-04-10,GRAVESTONE_DOJI," $$ 1. DOJI Found , Open Price : 216.5 Close Price : 216.1 $$ 2. Small or no lower shadow  , Close Price : 216.1 low Price : 215.5 $$ 3. Long Upper Shadow  , Open Price : 216.5 High Price : 219.25"
+3,ITC.NSE,2019-04-10,TWIZZER_TOP," $$ 1. Bearish candle formed $$ 2. Bullish candle formed $$ 3. TWIZZER TOP FOUND , Open Day 1 Price : 296.05 Close Day 2 Price : 296.05"
+4,OIL.NSE,2019-04-10,TWIZZER_BOTTOM," $$ 1. Bullish candle formed $$ 2. Bearish candle formed $$ 3. TWIZZER BOTTOM FOUND , Open Day 1 Price : 177.9 Close Day 2 Price : 177.8 $$ 4. Downtrend confirmed"
+
+
+
+AMARAJABAT :- GOOD
+
+
+OIL :-
+DATA GAP
+ABFRL:-
+DATA GAP
+
+
+

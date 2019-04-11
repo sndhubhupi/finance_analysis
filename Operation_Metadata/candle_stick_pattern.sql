@@ -43,13 +43,16 @@ as
         v_finding_type      varchar2(50)    := 'TWIZZER_BOTTOM';
         v_finding_counter   number default 0;
         check_equality      boolean;
+        check_equality_1    boolean;
+        v_price_high        number;
+        v_price_low         number;
     begin
           v_full_discription := '';
           select max(business_date) into v_max_date from stg_stock_price_data;
 
           -- check 1 :- last candle must be bullish
 
-          select price_open, price_close into v_price_open, v_price_close
+          select price_open, price_close, price_low,price_high into v_price_open, v_price_close,v_price_low,v_price_high
             from stg_stock_price_data where business_date = v_max_date;
 
           if v_price_close > v_price_open then
@@ -75,8 +78,12 @@ as
          v_smoothing_value := v_price_open * const_smoothing_factor;
          check_equality := v_smoothing_value/3 >= abs(v_price_open - v_price_close_2);
          if check_equality then
-            v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 3. TWIZZER BOTTOM FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
+            -- check small tail for latest candle
+            check_equality_1 := v_smoothing_value >= abs(v_price_open - v_price_low);
+            if check_equality_1 then
+                v_finding_counter := v_finding_counter + 1;
+                v_full_discription := v_full_discription || ' $$ 3. TWIZZER BOTTOM FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
+            end if;
          end if;
 
 
@@ -102,13 +109,16 @@ as
         v_finding_type      varchar2(50)    := 'TWIZZER_TOP';
         v_finding_counter   number default 0;
         check_equality      boolean;
+        check_equality_1    boolean;
+        v_price_high        number;
+        v_price_low         number;
     begin
           v_full_discription := '';
           select max(business_date) into v_max_date from stg_stock_price_data;
 
           -- check 1 :- last candle must be bearish
 
-          select price_open, price_close into v_price_open, v_price_close
+          select price_open, price_close, price_low,price_high into v_price_open, v_price_close,v_price_low,v_price_high
             from stg_stock_price_data where business_date = v_max_date;
 
           if v_price_close < v_price_open then
@@ -135,8 +145,12 @@ as
          v_smoothing_value := v_price_open * const_smoothing_factor;
          check_equality := v_smoothing_value/3 >= abs(v_price_open - v_price_close_2);
          if check_equality then
-            v_finding_counter := v_finding_counter + 1;
-            v_full_discription := v_full_discription || ' $$ 3. TWIZZER TOP FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
+            -- check small tail for latest candle
+            check_equality_1 := v_smoothing_value >= abs(v_price_open - v_price_high);
+            if check_equality_1 then
+                v_finding_counter := v_finding_counter + 1;
+                v_full_discription := v_full_discription || ' $$ 3. TWIZZER TOP FOUND , ' || 'Open Day 1 Price : ' || round(v_price_open,3) || ' Close Day 2 Price : ' ||  round(v_price_close_2,3);
+            end if;
          end if;
 
           -- check 4 checking for uptrend in twizzer top:-

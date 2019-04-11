@@ -12,6 +12,10 @@ findings_file = finding_folder + const.finding_file +'_' +datetime.datetime.now(
 
 def load_daily_price_data() :
     To_Oracle.insert_data_to_stock_list()
+    #load in case of failure while downloading
+    To_Oracle.load_all_download_price_to_db()
+    To_Oracle.update_earliest_latest_dt()
+    #finished
     stock_list = From_Oracle.fetch_stock_list()
     Get_Prices.run_load_for_stock_list(stock_list)
     To_Oracle.load_all_download_price_to_db()
