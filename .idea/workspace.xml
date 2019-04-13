@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96ebf537-7b35-4005-a02b-4761da7d131a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190408.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190408_1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/calculations.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/calculations.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190411.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190411.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operation_Metadata/candle_stick_pattern.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/candle_stick_pattern.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,23 +15,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="363">
-              <caret line="33" column="23" selection-end-line="34" />
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190411.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -45,6 +35,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>bottom_abondoned_baby</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,18 +57,19 @@
         <option value="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Get_Prices.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/database_table.sql" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Files_To_Process/stock_list.csv" />
         <option value="$PROJECT_DIR$/Operation_Metadata/To_Oracle.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/finding2019_04_05.csv" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190408.csv" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/candle_stick_pattern.sql" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190408_1.csv" />
         <option value="$PROJECT_DIR$/Operation_Metadata/calculations.sql" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190409.csv" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190410.csv" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190411.csv" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/candle_stick_pattern.sql" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190413.csv" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
       </list>
     </option>
   </component>
@@ -328,8 +324,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Findings.csv" />
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/AXISBANK.NS_20180901_20190401.csv" />
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/Files_To_Process/TCS.NS_20180901_20190401.csv" />
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/api.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -482,20 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1102">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/candle_stick_pattern.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="150" column="43" selection-start-line="150" selection-start-column="43" selection-end-line="150" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190408_1.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -538,20 +518,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190411.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="33" column="23" selection-end-line="34" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="240">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190411.csv">
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/candle_stick_pattern.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="571">
+          <caret line="1050" selection-start-line="1050" selection-end-line="1050" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="35" lean-forward="true" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190412.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190413.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

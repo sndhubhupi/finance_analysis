@@ -119,6 +119,7 @@ as
 
             candle_stick_pattern.twizzer_bottom      (stock.stock_ticker);
             candle_stick_pattern.twizzer_top         (stock.stock_ticker);
+            candle_stick_pattern.double_doji         (stock.stock_ticker);
 
             -- Bullish Reversal Patterns
             candle_stick_pattern.bullish_englufing(stock.stock_ticker);

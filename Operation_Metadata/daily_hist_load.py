@@ -32,3 +32,4 @@ def load_daily_price_data() :
 
 
 load_daily_price_data()
+

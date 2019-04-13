@@ -19,6 +19,7 @@ as
 
     procedure twizzer_bottom (  in_stock_ticker    stock_info_list.stock_ticker%type);
     procedure twizzer_top    (  in_stock_ticker    stock_info_list.stock_ticker%type);
+    procedure double_doji    (  in_stock_ticker    stock_info_list.stock_ticker%type);
 
 end candle_stick_pattern;
 /
@@ -975,6 +976,75 @@ as
          end if;
 	end shooting_star;
 
+	procedure double_doji (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        v_finding_type      varchar2(50)    := 'DOUBLE_DOJI';
+        v_finding_counter   number default 0;
+        v_price_high		number;
+        v_price_low         number;
+        v_price_high_2		number;
+        v_price_low_2       number;
+        v_price_open_3      number;
+        v_price_close_3     number;
+        v_min_date          date;
+        check_equality      boolean;
+        v_check_downtrend   boolean;
+        v_buyprice          number;
+        v_stop_loss         number;
+    begin
+          v_full_discription := '';
+          select max(business_date) into v_max_date from stg_stock_price_data;
 
+          -- load lastest day data
+		  select price_open, price_close,price_high,price_low into v_price_open, v_price_close,v_price_high,v_price_low
+            from stg_stock_price_data where business_date = v_max_date;
+          -- Load previous day data
+          select max(business_date) into v_yesterday_date from stg_stock_price_data
+            where business_date != v_max_date;
+          select price_open, price_close,price_high,price_low into v_price_open_2, v_price_close_2 ,v_price_high_2,v_price_low_2
+            from stg_stock_price_data where business_date = v_yesterday_date;
+          -- load 5 days old data to check downtrend or uptrend
+           select business_date into v_min_date from
+                (select business_date,rownum as row_num from stg_stock_price_data order by business_date desc) tab
+                    where row_num =5;
+          select price_open, price_close into v_price_open_3, v_price_close_3
+            from stg_stock_price_data where business_date = v_min_date;
+
+          -- check latest candle is doji
+         v_smoothing_value := v_price_open * const_smoothing_factor;
+         if v_smoothing_value >= abs(v_price_open - v_price_close) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 1. Latest Candle Doji Formation , ' || 'Open Price : ' || round(v_price_open,3) || ' Close Price : ' ||  round(v_price_close,3);
+         end if;
+
+          -- check previous candle is doji
+         v_smoothing_value := v_price_open_2 * const_smoothing_factor;
+         if v_smoothing_value >= abs(v_price_open_2 - v_price_close_2) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 2. Previous Candle Doji Formation , ' || 'Open Price : ' || round(v_price_open_2,3) || ' Close Price : ' ||  round(v_price_close_2,3);
+         end if;
+
+        -- check latest doji must be formed inside body of previous candle
+
+        if ( v_price_high_2 > v_price_open ) and (  v_price_open > v_price_low_2) then
+            v_finding_counter := v_finding_counter + 1;
+            v_full_discription := v_full_discription || ' $$ 3. Latest Doji Formation inside previous candle';
+         end if;
+
+         if v_price_open < v_price_close_3 then
+            v_full_discription := v_full_discription || ' $$ 4. Uptrend confirmed ';
+         else
+            v_full_discription := v_full_discription || ' $$ 4. Downtrend confirmed ';
+         end if;
+
+         v_buyprice := greatest(v_price_open,v_price_close,v_price_low,v_price_high,v_price_open_2,v_price_close_2,v_price_low_2,v_price_high_2);
+         v_stop_loss := least(v_price_open,v_price_close,v_price_low,v_price_high,v_price_open_2,v_price_close_2,v_price_low_2,v_price_high_2);
+
+         v_full_discription := v_full_discription || ' $$ 5. STOPLOSS/BUYPRICE :-  ' || v_buyprice || '/' || v_stop_loss;
+         if v_finding_counter = 3 then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
+            commit;
+         end if;
+    end double_doji;
 end candle_stick_pattern;
 /
