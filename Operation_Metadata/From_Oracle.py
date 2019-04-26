@@ -28,3 +28,10 @@ def fetch_candlestick_findings():
     #conn_str.close()
     print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '-- fetch_candlestick_findings completed --'
     return findings
+
+def get_previous_date():
+    from_oracle_cursr = conn_str.cursor();
+    from_oracle_cursr.execute("select max(business_date)-1 from  stock_price_data");
+    previous_date = from_oracle_cursr.fetchall();
+    from_oracle_cursr.close()
+    return previous_date[0][0].strftime('%d-%m-%Y')

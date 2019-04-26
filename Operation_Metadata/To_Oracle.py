@@ -107,10 +107,12 @@ def update_earliest_latest_dt():
         print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' update_earliest_latest_dt calculation finished'
 
 
-def find_candle_stick_pattern():
+def find_candle_stick_pattern(date_text):
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' find_candle_stick_pattern calculation started'
+    if date_text is not None:
+        const.validate(date_text)
     cur = conn_str.cursor()
-    cur.callproc('finance_analysis.find_candle_stick_pattern')
+    cur.callproc('finance_analysis.find_candle_stick_pattern',[date_text])
     cur.close()
     conn_str.commit()
     # conn_str.close()

@@ -17,7 +17,7 @@ as
     procedure load_price_data_from_stg;
     procedure load_stock_list_from_stg;
 
-    procedure find_candle_stick_pattern;
+    procedure find_candle_stick_pattern(in_date     varchar2);
 
 end finance_analysis;
 /
@@ -57,7 +57,7 @@ as
     function out_candle_stick_pattern
         return tab_findings pipelined
     is
-        cursor finding_list is select * from findings;
+        cursor finding_list is select * from findings order by finding_type;
            /* select * from (
                 select distinct
                     t.stock_ticker, t.business_date,t.finding_type,
@@ -104,22 +104,34 @@ as
         commit;
     end load_stock_list_from_stg;
 
-    procedure find_candle_stick_pattern
+    procedure find_candle_stick_pattern(in_date     varchar2)
     as
+        v_in_date   date;
     begin
         truncate_table('findings');
+
         for stock in (select distinct stock_ticker from stock_info_list)
         loop
 
             truncate_table('stg_stock_price_data');
 
             -- load only 15 days data for particular stock in stg table
-            insert into stg_stock_price_data
-                select * from (select * from stock_price_data where stock_ticker = stock.stock_ticker order by business_date desc) where rownum < 16;
+            if in_date is not null
+            then
+                v_in_date := to_date(in_date,'DD-MM-YYYY');
+                insert into stg_stock_price_data
+                    select * from (select * from stock_price_data where stock_ticker = stock.stock_ticker
+                                                                   and business_date <= v_in_date
+                        order by business_date desc) where rownum < 16;
+            else
+                insert into stg_stock_price_data
+                    select * from (select * from stock_price_data where stock_ticker = stock.stock_ticker order by business_date desc) where rownum < 16;
+            end if;
 
             candle_stick_pattern.twizzer_bottom      (stock.stock_ticker);
             candle_stick_pattern.twizzer_top         (stock.stock_ticker);
             candle_stick_pattern.double_doji         (stock.stock_ticker);
+            candle_stick_pattern.in_out_in           (stock.stock_ticker);
 
             -- Bullish Reversal Patterns
             candle_stick_pattern.bullish_englufing(stock.stock_ticker);

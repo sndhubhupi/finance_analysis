@@ -1,5 +1,14 @@
+import datetime
+import os
+
+def validate(date_text):
+    try:
+        datetime.datetime.strptime(date_text, '%d-%m-%Y')
+    except ValueError:
+        raise ValueError("Incorrect data format, should be DD-MM-YYYY")
+
 folder_to_process_file = '/Files_To_Process/' ;
-findings_folder = '/Finding/'
+findings_folder = os.getcwd()+ '/Finding/'
 finding_file = 'Finding'
 downloaded_csv_folder = '/Download_csv/';
 database_connection = 'db_hist_data/db_hist_data@localhost/orcl' ;

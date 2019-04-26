@@ -60,6 +60,13 @@ create table stock_pivot_data
 );
 
 
+create table in_out_in
+(   stock_ticker        varchar2(20),
+    business_date       date,
+    high_price          number,
+    low_price           number
+);
+
 
 create table stg_stock_price_data as select * from stock_price_data;
 select * from stg_stock_price_data;
