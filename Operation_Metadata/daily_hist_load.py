@@ -24,7 +24,7 @@ def load_daily_price_data() :
     labels = ['Stock Ticker', 'Date', 'Finding_Type', 'Discription']
     df = pd.DataFrame.from_records(findings, columns=labels)
     findings_file = const.findings_folder + const.finding_file + '_' + max(df['Date']).strftime('%Y%m%d') + const.csv_extension
-    df.to_csv(findings_file)
+    df.to_csv(findings_file,header=False,index=False)
     To_Telegram.send_text_to_telegram(findings)
     # Get data for previous date
     previous_date = From_Oracle.get_previous_date()

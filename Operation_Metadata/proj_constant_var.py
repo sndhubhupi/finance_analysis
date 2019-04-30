@@ -8,10 +8,12 @@ def validate(date_text):
         raise ValueError("Incorrect data format, should be DD-MM-YYYY")
 
 folder_to_process_file = '/Files_To_Process/' ;
+stock_price_folder = os. getcwd() + '/price_data_files/' ;
 findings_folder = os.getcwd()+ '/Finding/'
 finding_file = 'Finding'
 downloaded_csv_folder = '/Download_csv/';
 database_connection = 'db_hist_data/db_hist_data@localhost/orcl' ;
+png_extention = '.png'
 csv_extention = '.csv'
 csv_extension = '.csv'
 stock_list_file = 'stock_list.csv' ;
