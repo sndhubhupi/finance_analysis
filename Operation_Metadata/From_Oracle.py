@@ -42,9 +42,9 @@ def get_previous_date(num):
 def get_price_data_create_file(stock_ticker):
     print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '     Fetching price history data for : ' + stock_ticker
     from_oracle_cursr = conn_str.cursor();
-    from_oracle_cursr.execute("select business_date,price_close,price_high,price_low,price_open,volume "
+    from_oracle_cursr.execute("select business_date,price_close,price_high,price_low,price_open,volume,dma_50,dma_10 "
                               "from stock_price_data where stock_ticker = :stock order by business_date asc", stock = stock_ticker);
-    labels = ['Business_date', 'price_close' ,'price_high', 'price_low', 'price_open','Volume']
+    labels = ['Business_date', 'price_close' ,'price_high', 'price_low', 'price_open','Volume','dma_50','dma_10']
     stock_price_data = from_oracle_cursr.fetchall();
     df = pd.DataFrame.from_records(stock_price_data, columns=labels)
     price_file = const.stock_price_folder + stock_ticker + const.csv_extension

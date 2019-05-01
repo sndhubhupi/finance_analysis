@@ -29,13 +29,13 @@ def create_pdf(finding_file,header_text):
         chart_file = create_chart.graph_data(stock_ticker,price_data_file);
         # Stock Name and business date and finding type
         c.setFont('Helvetica-Bold', 15, leading=None)
-        c.drawString(5, 580, 'Stock Name          : ' + stock_ticker)
+        c.drawString(5, 590, 'Stock Name          : ' + stock_ticker)
         c.setFont('Helvetica-Bold', 15, leading=None)
-        c.drawString(5, 560, 'Finding Type        : ' + finding_type)
+        c.drawString(5, 575, 'Finding Type        : ' + finding_type)
         c.setFont('Helvetica-Bold', 15, leading=None)
-        c.drawString(5, 540, 'Date                : ' + business_date)
+        c.drawString(5, 560, 'Date                 : ' + business_date)
         c.setFont('Helvetica-Bold', 15, leading=None)
-        c.drawString(5, 520, 'Additional Info     : ' + additional_info)
+        c.drawString(5, 545, 'Additional Info     : ' + additional_info)
         # chart file
         c.drawImage(chart_file, 5, 25, width=790, height=500)
         c.showPage()

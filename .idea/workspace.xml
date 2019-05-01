@@ -2,58 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96ebf537-7b35-4005-a02b-4761da7d131a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Operation_Metadata/Maintenance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190408.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190408_1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190409.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190409_1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190410.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190411.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190412.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190413.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190414.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190415.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190416.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190418.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190424.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190424.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190426.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190426.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190429.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190430.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190430.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/finding2019_04_05.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190430.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190430.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operation_Metadata/From_Oracle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/From_Oracle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/To_Telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/To_Telegram.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operation_Metadata/create_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/create_chart.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operation_Metadata/create_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/create_pdf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/finance_analysis.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/pdf_file_name.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operation_Metadata/testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operation_Metadata/testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests-2.21.0.dist-info/INSTALLER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests-2.21.0.dist-info/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests-2.21.0.dist-info/METADATA" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests-2.21.0.dist-info/RECORD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests-2.21.0.dist-info/WHEEL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests-2.21.0.dist-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/__version__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/_internal_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/adapters.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/adapters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/certs.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/certs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/compat.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/compat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/cookies.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/cookies.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/exceptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/help.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/hooks.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/hooks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/packages.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/sessions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/sessions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/status_codes.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/status_codes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/structures.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/structures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+            <state relative-caret-position="336">
+              <caret line="44" selection-start-line="44" selection-end-line="44" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -123,13 +75,13 @@
         <option value="$PROJECT_DIR$/Operation_Metadata/testing.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190430.csv_temp" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Finding/Finding_20190430.csv" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/create_chart.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/From_Oracle.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/create_pdf.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/Maintenance.py" />
-        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py" />
         <option value="$PROJECT_DIR$/Operation_Metadata/To_Telegram.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/From_Oracle.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/create_chart.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/create_pdf.py" />
+        <option value="$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py" />
       </list>
     </option>
   </component>
@@ -294,9 +246,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.daily_hist_load" />
+        <item itemvalue="Python.create_pdf" />
         <item itemvalue="Python.To_Telegram" />
         <item itemvalue="Python.testing" />
-        <item itemvalue="Python.create_pdf" />
         <item itemvalue="Python.create_chart" />
       </list>
     </recent_temporary>
@@ -327,12 +279,12 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25893566" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25893566" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4980143" visible="true" weight="0.29041097" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4980143" visible="true" weight="0.29041097" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -544,9 +496,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/INFY.NSE.csv" />
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/^NSEI.csv" />
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/INFY.NSE.png" />
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/^NSEI.png" />
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/TATAPOWER.NSE.png" />
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/TATAPOWER.NSE.csv" />
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/requests/sessions.py">
@@ -653,16 +603,6 @@
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/create_chart.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="8" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="8" />
-          <folding>
-            <element signature="e#20#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/testing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -677,16 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="717">
           <caret line="162" selection-start-line="162" selection-end-line="162" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="36" column="83" selection-start-line="36" selection-start-column="83" selection-end-line="36" selection-end-column="83" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -710,16 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Operation_Metadata/create_pdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="64" lean-forward="true" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/proj_constant_var.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -730,10 +650,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/^NSEI.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="33" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/price_data_files/^NSEI.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/From_Oracle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="48" column="68" lean-forward="true" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/create_chart.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+          <folding>
+            <element signature="e#51#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Operation_Metadata/create_pdf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Operation_Metadata/daily_hist_load.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+        <state relative-caret-position="336">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
