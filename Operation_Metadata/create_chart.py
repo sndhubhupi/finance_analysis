@@ -1,10 +1,13 @@
-#988934615 - Sameer
+#988934615 - Sameer Khan
+#989212531 - Nikhat Khan
+
 import numpy as np
 import datetime
 import proj_constant_var as const
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+plt.rcParams.update({'figure.max_open_warning': 0})
 import matplotlib.ticker as mticker
 import matplotlib.dates as mdates
 from mpl_finance import candlestick_ohlc
@@ -19,7 +22,7 @@ def bytespdate2num(fmt, encoding='utf-8'):
 
 
 def graph_data(stock, stock_file):
-    print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Creating Chart for : ' + stock
+    print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '     Creating Chart for : ' + stock
     date, closep, highp, lowp, openp, volume = np.loadtxt(stock_file, delimiter=',', unpack=True,
                                                           converters={0: mdates.strpdate2num('%Y-%m-%d')})
     ymin = min(lowp)
@@ -64,5 +67,5 @@ def graph_data(stock, stock_file):
     image_file = const.stock_price_folder + stock + const.png_extention
     plt.savefig(image_file,bbox_inches='tight', dpi = 500)
     #plt.show()
-    print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Chart created and saved in : ' + image_file
+    print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '     Chart created and saved in : ' + image_file
     return image_file

@@ -1,10 +1,11 @@
 import telegram
+import telebot
 import requests
 import time
 import datetime
 import proj_constant_var as const
 
-def sendTelegram(totalResponse, chatId):
+def sendTextTelegram(totalResponse, chatId):
     try:
         #print("in sendTelegram", totalResponse)
         bot_id = "bot564398612:AAEXUIfrJVFHfBnxS4Uot0Ob5vDPN8Ws69I"
@@ -14,11 +15,20 @@ def sendTelegram(totalResponse, chatId):
     except Exception as e:
         print(e)
         time.sleep(30)
-        sendTelegram(totalResponse, chatId)
+        sendTextTelegram(totalResponse, chatId)
 
 def send_text_to_telegram(findings):
     print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') +" : Sending Text to telegram Started"
     for id in const.telegram_id_list:
         for record in findings:
-            sendTelegram(record,id)
+            sendTextTelegram(record,id)
     print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') +" : Sending Text to telegram Finished"
+
+
+def send_pdf_to_user(pdf_file):
+    for id in const.telegram_id_list:
+        token = const.send_pdf_token
+        tb = telebot.TeleBot(token)
+        document = open(pdf_file,'rb')
+        tb.send_document(id,document)
+        print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " : File Sent to Telegram on " + id

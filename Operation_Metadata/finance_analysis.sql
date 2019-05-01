@@ -93,6 +93,11 @@ as
         insert into stock_price_data
             select * from stg_stock_price_data;
         commit;
+        -- delete invalid data from main table
+        delete from stock_price_data where price_high = 0;
+        commit;
+        delete from stock_price_data where volume = 0 and stock_ticker not in ('^NSEI','^NSEBANK');
+        commit;
     end load_price_data_from_stg;
 
     procedure load_stock_list_from_stg
