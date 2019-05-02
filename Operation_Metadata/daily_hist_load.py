@@ -42,6 +42,7 @@ def find_candlestick(num):
 
 load_daily_price_data()
 find_candlestick(None)
+find_candlestick(2)
 find_candlestick(3)
 
 #Maintenance.cleanup(0,'/Users/sandhu/PycharmProjects/Finance_Analysis/Operation_Metadata/price_data_files/')

@@ -22,6 +22,9 @@ as
     procedure double_doji    (  in_stock_ticker    stock_info_list.stock_ticker%type);
     procedure in_out_in      (  in_stock_ticker    stock_info_list.stock_ticker%type);
 
+    -- four candle stick patterns
+    procedure bearish_three_line_strike (  in_stock_ticker    stock_info_list.stock_ticker%type);       -- rank 1
+    procedure bullish_three_line_strike (  in_stock_ticker    stock_info_list.stock_ticker%type);       -- rank 2
 end candle_stick_pattern;
 /
 
@@ -85,6 +88,11 @@ as
             end if;
          end if;
 
+          -- check both candles are not doji's
+          if (abs(v_price_open - v_price_close) > v_smoothing_value *2) and (abs(v_price_open_2 - v_price_close_2) > v_smoothing_value *2)
+            then
+                v_finding_counter := v_finding_counter + 1;
+          end if;
 
           -- check 4 Down trend confirmed :-
 
@@ -95,7 +103,7 @@ as
             v_full_discription := v_full_discription || ' $$  Downtrend confirmed';
           end if;
 
-          if v_finding_counter = 3 then
+          if v_finding_counter = 4 then
             insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
             commit;
           end if;
@@ -149,6 +157,12 @@ as
             end if;
          end if;
 
+          -- check both candles are not doji's
+          if (abs(v_price_open - v_price_close) > v_smoothing_value *2) and (abs(v_price_open_2 - v_price_close_2) > v_smoothing_value *2)
+            then
+                v_finding_counter := v_finding_counter + 1;
+          end if;
+
           -- check 4 checking for uptrend in twizzer top:-
 
           select price_open,price_close into v_price_open, v_price_close
@@ -158,7 +172,7 @@ as
             v_full_discription := v_full_discription || ' $$ Uptrend confirmed';
           end if;
 
-          if v_finding_counter = 3 then
+          if v_finding_counter = 4 then
             insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
             commit;
           end if;
@@ -1065,6 +1079,175 @@ as
           end if;
     end in_out_in;
 
+
+   procedure bearish_three_line_strike     (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        v_finding_type      varchar2(50)    := 'BEARISH_THREE_LINE_STRIKE';
+        v_finding_counter   number default 0;
+        v_price_high		number;
+        v_price_low         number;
+        v_price_high_2		number;
+        v_price_low_2       number;
+        v_price_high_3		number;
+        v_price_low_3       number;
+        v_price_open_3      number;
+        v_price_close_3     number;
+        v_price_high_4		number;
+        v_price_low_4       number;
+        v_price_open_4      number;
+        v_price_close_4     number;
+        check_equality      boolean;
+        v_day_3_date        date;
+        v_day_4_date        date;
+    begin
+          v_full_discription := '';
+          select max(business_date) into v_max_date from stg_stock_price_data;
+
+          -- load lastest day data
+		  select price_open, price_close,price_high,price_low into v_price_open, v_price_close,v_price_high,v_price_low
+            from stg_stock_price_data where business_date = v_max_date;
+          -- Load previous day data
+          select max(business_date) into v_yesterday_date from stg_stock_price_data
+            where business_date != v_max_date;
+          select price_open, price_close,price_high,price_low into v_price_open_2, v_price_close_2 ,v_price_high_2,v_price_low_2
+            from stg_stock_price_data where business_date = v_yesterday_date;
+         -- Load day before previous i.e 3rd candle data
+          select max(business_date) into v_day_3_date from stg_stock_price_data
+            where business_date != v_yesterday_date and business_date != v_max_date;
+          select price_open, price_close,price_high,price_low into v_price_open_3, v_price_close_3,v_price_high_3,v_price_low_3
+            from stg_stock_price_data where business_date = v_day_3_date;
+          -- Load 4th candle data
+          select max(business_date) into v_day_4_date from stg_stock_price_data
+            where business_date not in  (v_yesterday_date,v_max_date,v_day_3_date);
+          select price_open, price_close,price_high,price_low into v_price_open_4, v_price_close_4,v_price_high_4,v_price_low_4
+            from stg_stock_price_data where business_date = v_day_4_date;
+
+         -- check 1 :- 4th Candle must be red candle
+          if v_price_close_4 < v_price_open_4 then
+            v_finding_counter := v_finding_counter + 1;
+          end if;
+
+          -- check 2 : 3rd candle must be red
+          if v_price_close_3 < v_price_open_3 then
+            -- check open must be between previous candle
+            if v_price_open_3 > v_price_close_4 and v_price_open_3 < v_price_open_4 then
+                -- check close must be below close of previous candle
+                if v_price_close_3 < v_price_close_4 then
+                    v_finding_counter := v_finding_counter + 1;
+                end if;
+            end if;
+          end if;
+
+          -- check 3 : 2rd candle must be red
+          if v_price_close_2 < v_price_open_2 then
+            -- check open must be between previous candle
+            if v_price_open_2 > v_price_close_3 and v_price_open_2 < v_price_open_3 then
+                -- check close must be below close of previous candle
+                if v_price_close_2 < v_price_close_3 then
+                    v_finding_counter := v_finding_counter + 1;
+                end if;
+            end if;
+          end if;
+
+          -- check 4 : latest candle muts be green
+          if v_price_close > v_price_open then
+            -- check close must be greater than 4th candle open i.e break downtrend
+            if v_price_close > v_price_open_4 then
+                v_finding_counter := v_finding_counter + 1;
+            end if;
+          end if;
+          v_full_discription := 'RANK 1, Must be in Downtread than 84% sucess rate. Volume of 4th candle matters';
+         if v_finding_counter = 4  then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
+            commit;
+         end if;
+
+    end bearish_three_line_strike;
+
+
+   procedure bullish_three_line_strike     (  in_stock_ticker    stock_info_list.stock_ticker%type)
+    as
+        v_finding_type      varchar2(50)    := 'BULLISH_THREE_LINE_STRIKE';
+        v_finding_counter   number default 0;
+        v_price_high		number;
+        v_price_low         number;
+        v_price_high_2		number;
+        v_price_low_2       number;
+        v_price_high_3		number;
+        v_price_low_3       number;
+        v_price_open_3      number;
+        v_price_close_3     number;
+        v_price_high_4		number;
+        v_price_low_4       number;
+        v_price_open_4      number;
+        v_price_close_4     number;
+        check_equality      boolean;
+        v_day_3_date        date;
+        v_day_4_date        date;
+    begin
+          v_full_discription := '';
+          select max(business_date) into v_max_date from stg_stock_price_data;
+
+          -- load lastest day data
+		  select price_open, price_close,price_high,price_low into v_price_open, v_price_close,v_price_high,v_price_low
+            from stg_stock_price_data where business_date = v_max_date;
+          -- Load previous day data
+          select max(business_date) into v_yesterday_date from stg_stock_price_data
+            where business_date != v_max_date;
+          select price_open, price_close,price_high,price_low into v_price_open_2, v_price_close_2 ,v_price_high_2,v_price_low_2
+            from stg_stock_price_data where business_date = v_yesterday_date;
+         -- Load day before previous i.e 3rd candle data
+          select max(business_date) into v_day_3_date from stg_stock_price_data
+            where business_date != v_yesterday_date and business_date != v_max_date;
+          select price_open, price_close,price_high,price_low into v_price_open_3, v_price_close_3,v_price_high_3,v_price_low_3
+            from stg_stock_price_data where business_date = v_day_3_date;
+          -- Load 4th candle data
+          select max(business_date) into v_day_4_date from stg_stock_price_data
+            where business_date not in  (v_yesterday_date,v_max_date,v_day_3_date);
+          select price_open, price_close,price_high,price_low into v_price_open_4, v_price_close_4,v_price_high_4,v_price_low_4
+            from stg_stock_price_data where business_date = v_day_4_date;
+
+         -- check 1 :- 4th Candle must be green candle
+          if v_price_close_4 > v_price_open_4 then
+            v_finding_counter := v_finding_counter + 1;
+          end if;
+
+          -- check 2 : 3rd candle must be green
+          if v_price_close_3 > v_price_open_3 then
+            -- check open must be between previous candle
+            if v_price_open_3 < v_price_close_4 and v_price_open_3 > v_price_open_4 then
+                -- check close must be above close of previous candle
+                if v_price_close_3 > v_price_close_4 then
+                    v_finding_counter := v_finding_counter + 1;
+                end if;
+            end if;
+          end if;
+
+          -- check 3 : 2rd candle must be green
+          if v_price_close_2 > v_price_open_2 then
+            -- check open must be between previous candle
+            if v_price_open_2 < v_price_close_3 and v_price_open_2 > v_price_open_3 then
+                -- check close must be abobe close of previous candle
+                if v_price_close_2 > v_price_close_3 then
+                    v_finding_counter := v_finding_counter + 1;
+                end if;
+            end if;
+          end if;
+
+          -- check 4 : latest candle must be red
+          if v_price_close < v_price_open then
+            -- check close must be greater than 4th candle open i.e break downtrend
+            if v_price_close < v_price_open_4 then
+                v_finding_counter := v_finding_counter + 1;
+            end if;
+          end if;
+          v_full_discription := 'RANK 2, Must be in UPTREND than 65% sucess rate. Volume of 4th candle matters';
+         if v_finding_counter = 4  then
+            insert into findings values (in_stock_ticker,v_max_date,v_finding_type,v_full_discription);
+            commit;
+         end if;
+
+    end bullish_three_line_strike;
 
 end candle_stick_pattern;
 /

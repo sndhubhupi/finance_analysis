@@ -98,6 +98,8 @@ as
         commit;
         delete from stock_price_data where volume = 0 and stock_ticker not in ('^NSEI','^NSEBANK');
         commit;
+        delete from stock_price_data where price_high = 0;
+        commit;
     end load_price_data_from_stg;
 
     procedure load_stock_list_from_stg
@@ -135,7 +137,6 @@ as
 
             candle_stick_pattern.twizzer_bottom      (stock.stock_ticker);
             candle_stick_pattern.twizzer_top         (stock.stock_ticker);
-            candle_stick_pattern.double_doji         (stock.stock_ticker);
             candle_stick_pattern.in_out_in           (stock.stock_ticker);
 
             -- Bullish Reversal Patterns
@@ -155,6 +156,9 @@ as
             candle_stick_pattern.gravestone_doji	 (stock.stock_ticker);
             candle_stick_pattern.shooting_star    (stock.stock_ticker);
 
+            -- four candlestick pattern
+            candle_stick_pattern.bearish_three_line_strike (stock.stock_ticker);
+            candle_stick_pattern.bullish_three_line_strike (stock.stock_ticker);
         end loop;
     end find_candle_stick_pattern;
 
