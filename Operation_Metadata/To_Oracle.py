@@ -118,3 +118,11 @@ def find_candle_stick_pattern(date_text):
     # conn_str.close()
     print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' find_candle_stick_pattern calculation finished'
 
+def analyze_candle_stick_pattern(candlestick_name):
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Analyze started for : '+ candlestick_name
+    cur = conn_str.cursor()
+    cur.callproc('finance_analysis.analyze_pattern',[candlestick_name])
+    cur.close()
+    conn_str.commit()
+    # conn_str.close()
+    print  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Analyze finished'

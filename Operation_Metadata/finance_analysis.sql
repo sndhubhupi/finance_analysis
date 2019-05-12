@@ -19,6 +19,8 @@ as
 
     procedure find_candle_stick_pattern(in_date     varchar2);
 
+    procedure analyze_pattern( in_pattern_name  varchar2);
+
 end finance_analysis;
 /
 
@@ -91,7 +93,8 @@ as
          where exists (select 1 from stg_stock_price_data stg where spd.stock_ticker = stg.stock_ticker
                                                                       and spd.business_date = stg.business_date);
         insert into stock_price_data
-            select * from stg_stock_price_data;
+            select stock_ticker, business_date, price_high, price_low, price_open, price_close,
+                    volume , adj_close, dma_200, dma_50, dma_10, dma_8 from stg_stock_price_data;
         commit;
         -- delete invalid data from main table
         delete from stock_price_data where price_high = 0;
@@ -127,13 +130,19 @@ as
             then
                 v_in_date := to_date(in_date,'DD-MM-YYYY');
                 insert into stg_stock_price_data
-                    select * from (select * from stock_price_data where stock_ticker = stock.stock_ticker
-                                                                   and business_date <= v_in_date
-                        order by business_date desc) where rownum < 16;
+                    select * from (select stock_ticker, business_date, price_high, price_low, price_open, price_close,
+                                            volume , adj_close, dma_200, dma_50, dma_10, dma_8, rownum
+                                   from stock_price_data where stock_ticker = stock.stock_ticker
+                                                          and business_date <= v_in_date   order by business_date desc)
+                    where rownum < 22;
             else
                 insert into stg_stock_price_data
-                    select * from (select * from stock_price_data where stock_ticker = stock.stock_ticker order by business_date desc) where rownum < 16;
-            end if;
+                    select * from (select stock_ticker, business_date, price_high, price_low, price_open, price_close,
+                                            volume , adj_close, dma_200, dma_50, dma_10, dma_8, rownum
+                                   from stock_price_data where stock_ticker = stock.stock_ticker
+                                                         order by business_date desc)
+                    where rownum < 22;
+           end if;
 
             candle_stick_pattern.twizzer_bottom      (stock.stock_ticker);
             candle_stick_pattern.twizzer_top         (stock.stock_ticker);
@@ -161,6 +170,41 @@ as
             candle_stick_pattern.bullish_three_line_strike (stock.stock_ticker);
         end loop;
     end find_candle_stick_pattern;
+
+    procedure analyze_pattern(in_pattern_name     varchar2)
+    as
+        v_sql varchar2(200);
+        counter number default 0;
+        ex_custom EXCEPTION;
+        PRAGMA EXCEPTION_INIT( ex_custom, -20001 );
+        v_error varchar2(200);
+    begin
+        truncate_table('findings');
+
+        for v_in_date in (select business_date,stock_ticker from stock_price_data where business_date >= to_date('17-12-18','DD-MM-YY') order by business_date asc)
+        loop
+             counter := counter + 1;
+             truncate_table('stg_stock_price_data');
+             -- load only 15 days data for all stock in stg table
+             insert into stg_stock_price_data
+                select * from (select stock_ticker, business_date, price_high, price_low, price_open, price_close,
+                                            volume , adj_close, dma_200, dma_50, dma_10, dma_8, rownum
+                                   from stock_price_data where business_date <= v_in_date.business_date
+                                   and stock_ticker = v_in_date.stock_ticker   order by business_date desc)
+                    where rownum < 22;
+                v_sql := 'BEGIN candle_stick_pattern.'|| in_pattern_name ||'(:b1); END;';
+                execute immediate (v_sql) USING v_in_date.stock_ticker ;
+                v_error := v_in_date.business_date || ' : ' || v_in_date.stock_ticker ;
+        end loop;
+        raise_application_error( -20001, v_error );
+    exception
+          when no_data_found then
+             dbms_output.put_line( v_error );
+          when ex_custom
+           then
+               dbms_output.put_line( sqlerrm );
+    end analyze_pattern;
+
 
 end finance_analysis;
 /

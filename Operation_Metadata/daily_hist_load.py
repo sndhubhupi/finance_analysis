@@ -39,10 +39,24 @@ def find_candlestick(num):
     #To_Telegram.send_text_to_telegram(findings)
     To_Telegram.send_pdf_to_user(pdf_file_name)
 
+def analyze_candlestick(candletick_name):
+    labels = ['Stock Ticker', 'Date', 'Finding_Type', 'Discription']
+    Header_Text = 'Analyzing Candlestick Pattern : ' + candletick_name
+    To_Oracle.analyze_candle_stick_pattern(candletick_name)
+    findings = From_Oracle.fetch_candlestick_findings()
+    df = pd.DataFrame.from_records(findings, columns=labels)
+    findings_file = const.findings_folder + candletick_name + const.csv_extension
+    df.to_csv(findings_file,header=False,index=False)
+    pdf_file_name = create_pdf.create_pdf(findings_file,Header_Text)
+    #To_Telegram.send_text_to_telegram(findings)
+    To_Telegram.send_pdf_to_user(pdf_file_name)
 
 load_daily_price_data()
 find_candlestick(None)
 find_candlestick(2)
 find_candlestick(3)
 
+
+#analyze_candlestick('morning_star')
+#analyze_candlestick('top_abondoned_baby')
 #Maintenance.cleanup(0,'/Users/sandhu/PycharmProjects/Finance_Analysis/Operation_Metadata/price_data_files/')

@@ -69,6 +69,7 @@ create table in_out_in
 
 
 create table stg_stock_price_data as select * from stock_price_data;
+alter table stg_stock_price_data add row_number number;
 select * from stg_stock_price_data;
 
 get_stock_price_dt_range('MARUTI.BO',datetime.datetime(2009, 9, 1),datetime.datetime(2019, 03, 16))

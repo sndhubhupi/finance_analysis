@@ -44,7 +44,7 @@ def graph_data(stock, stock_file):
     ax1 = plt.subplot2grid((5, 4), (0, 0), rowspan=4, colspan=4)
     candlestick_ohlc(ax1, candleAr, width=.4, colorup='#77d879', colordown='#db3f3f')
     plt.ylabel('Stock Price')
-    ax1.grid(False)
+    ax1.grid(True)
     ax1.plot(range(len(date)),dma50, color= 'r', label = 'DMA50')
     #ax1.plot(range(len(date)), dma200, color='red', label='DMA200')
     ax1.plot(range(len(date)), dma10, color='g', label='DMA10')
@@ -53,20 +53,28 @@ def graph_data(stock, stock_file):
     ax2.bar(range(len(date)), volume)
     ax2.axes.yaxis.set_ticklabels([])
     plt.ylabel('Volume')
-    ax2.grid(False)
+    ax2.grid(True)
     for label in ax2.xaxis.get_ticklabels():
-        label.set_rotation(90)
+        label.set_rotation(45)
 
-    ax1.xaxis.set_major_locator(mticker.MaxNLocator(30))
-    ax1.yaxis.set_major_locator(mticker.MaxNLocator(30))
+    ax1.xaxis.set_major_locator(mticker.MaxNLocator(10))
+    ax1.yaxis.set_major_locator(mticker.MaxNLocator(20))
     ax1.xaxis.set_major_formatter(Jackarow('%Y-%m-%d'))
 
     plt.subplots_adjust(left=.10, bottom=.19, right=.93, top=.95, wspace=.20, hspace=0)
     # plt.ylim([ymin, ymax])
     plt.suptitle(stock + ' Stock Price')
     plt.setp(ax1.get_xticklabels(), visible=False)
+    #a=datetime.datetime(2019,1,1)
+    #b=datetime.datetime(2019,3,9)
+    #ax1.axvspan(a,b,color='yellow', alpha=0.5)
+
     image_file = const.stock_price_folder + stock + const.png_extention
     plt.savefig(image_file,bbox_inches='tight', dpi = 500)
     #plt.show()
     print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '     Chart created and saved in : ' + image_file
     return image_file
+
+
+
+#graph_data('ABCAPITAL.NSE','/Users/sandhu/PycharmProjects/Finance_Analysis/Operation_Metadata/price_data_files/ABCAPITAL.NSE.csv')
